@@ -1,0 +1,114 @@
+/* Fade-in animation for the header quote */
+.section-container .text-center p {
+  opacity: 0;
+  animation: fadeIn 1.5s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Navbar link hover effect */
+.navbar-nav li a {
+  transition: all 0.3s ease;
+}
+
+.navbar-nav li a:hover {
+  transform: scale(1.1);
+  color: #007bff;
+}
+
+/* Slide-in animation for project cards */
+.card-container {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: slideIn 0.8s ease-out forwards;
+  animation-delay: calc(0.2s * var(--card-index));
+}
+
+/* Assign custom property for staggering */
+.card-container:nth-child(1) { --card-index: 1; }
+.card-container:nth-child(2) { --card-index: 2; }
+.card-container:nth-child(3) { --card-index: 3; }
+
+/* Ensure staggering works for both carousel items */
+.carousel-inner .item .row .col-sm-4:nth-child(1) .card-container { --card-index: 1; }
+.carousel-inner .item .row .col-sm-4:nth-child(2) .card-container { --card-index: 2; }
+.carousel-inner .item .row .col-sm-4:nth-child(3) .card-container { --card-index: 3; }
+
+@keyframes slideIn {
+  0% { opacity: 0; transform: translateY(50px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Card hover effect */
+.card-container:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Image hover effect */
+.black-image-project-hover img {
+  transition: transform 0.3s ease;
+}
+
+.black-image-project-hover:hover img {
+  transform: scale(1.05);
+}
+
+/* Button pulse effect on hover */
+.btn-default {
+  transition: all 0.3s ease;
+}
+
+.btn-default:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Carousel scroll animation */
+.carousel-inner {
+  overflow: hidden;
+}
+
+.carousel-inner .item {
+  transition: transform 0.5s ease-in-out;
+  position: relative;
+  width: 100%;
+}
+
+/* Right arrow (next): Slide from right to left */
+.carousel-inner .item.active,
+.carousel-inner .item.next {
+  transform: translateX(0);
+}
+
+.carousel-inner .item.next {
+  transform: translateX(100%);
+}
+
+.carousel-inner .item.active.right {
+  transform: translateX(-100%);
+}
+
+/* Left arrow (prev): Slide from left to right */
+.carousel-inner .item.prev {
+  transform: translateX(100%);
+}
+
+.carousel-inner .item.active.left {
+  transform: translateX(-100%);
+}
+
+.carousel-inner .item.active,
+.carousel-inner .item.next.right,
+.carousel-inner .item.prev.left {
+  transform: translateX(0);
+}
+
+/* Ensure opacity transition is disabled to focus on transform */
+.carousel-inner .item {
+  opacity: 1;
+}

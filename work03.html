@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width,initial-scale=1" name="viewport">
+  <meta content="description" name="description">
+  <meta name="google" content="notranslate" />
+  <meta content="Mashup templates have been developed by Orson.io team" name="author">
+
+  <!-- Disable tap highlight on IE -->
+  <meta name="msapplication-tap-highlight" content="no">
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-icon-180x180.png">
+  <link href="./assets/favicon.ico" rel="icon">
+
+  <title>Title page</title>  
+
+  <link href="./main.3f6952e4.css" rel="stylesheet">
+
+  <style>
+    .cool-animation {
+        animation: fadeInScale 2s ease-in-out;
+    }
+
+    @keyframes fadeInScale {
+        0% {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+  </style>
+</head>
+
+<body>
+<div id="site-border-left"></div>
+<div id="site-border-right"></div>
+<div id="site-border-top"></div>
+<div id="site-border-bottom"></div>
+
+<!-- Header -->
+<header>
+  <nav class="navbar navbar-fixed-top navbar-default">
+    <div class="container">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="./index.html" title="">01 : Home</a></li>
+          <li><a href="./works.html" title="">02 : Works</a></li>
+          <li><a href="./about.html" title="">03 : About me</a></li>
+          <li><a href="./contact.html" title="">04 : Contact</a></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right navbar-small visible-md visible-lg">
+          <li><a href="./index.html" title="" class="active">001</a></li>
+          <li><a href="./index.html" title="">002</a></li>
+          <li><a href="./index.html" title="">003</a></li>
+          <li><a href="./index.html" title="">004</a></li>
+          <li><a href="./index.html" title="">005</a></li>
+          <li><a href="./index.html" title="">006</a></li>
+        </ul>
+      </div> 
+    </div>
+  </nav>
+</header>
+
+<!-- Main content -->
+<div class="section-container">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <img src="./assets/images/work001-01.jpg" class="img-responsive" alt="">
+        <div class="card-container">
+          <div class="text-center">
+            <h1 class="h2">003 : Self Driving Car</h1>
+          </div><br>
+          <blockquote>
+            <p style="text-align: center;">"Self-driving cars are the natural extension of active safety and obviously something we should do." — Elon Musk</p>
+          </blockquote>
+          <br><br><br>
+          <p style="font-size: 15px;">
+            For the WRO Future Engineers competition, I designed and built a self-driving car with my friend. We crafted a custom wooden frame, carefully designing it for optimal weight and dimensions. After spending over a month perfecting the frame’s design, we had it CNC-machined to ensure precision and durability.
+            <br><br>
+            The car uses a Raspberry Pi 4 as the core controller, with a camera for real-time vision processing and obstacle detection. I trained a custom dataset using TensorFlow to accurately identify and classify obstacles in the car’s path.
+            <br><br>
+            The system also integrates sensors like a gyroscope, accelerometer, and magnetometer for precise localization and navigation. We developed custom code for lane detection, path planning, and autonomous decision-making, enabling the vehicle to operate intelligently and complete tasks without human input.
+            <br><b><a href="https://github.com/sohaan17/wro2024-fe-Top_Maverick"><br>View Github Repo</a></b>
+          </p>
+        </div>
+      </div>
+
+      <!-- 3 Images instead of video -->
+      <div class="col-xs-12">
+        <div class="row">
+          <div class="col-sm-4">
+            <img src="./assets/images/PCB.png" class="img-responsive cool-animation" alt="Image 1">
+          </div>
+          <div class="col-sm-4">
+            <img src="./assets/images/Car.png" class="img-responsive cool-animation" alt="Image 2">
+          </div>
+          <div class="col-sm-4">
+            <img src="./assets/images/CNC.png" class="img-responsive cool-animation" alt="Image 3">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer-container text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <!-- Footer content if any -->
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script>
+  document.addEventListener("DOMContentLoaded", function (event) {
+     navActivePage();
+  });
+</script>
+
+<script type="text/javascript" src="./main.70a66962.js"></script>
+
+</body>
+</html>

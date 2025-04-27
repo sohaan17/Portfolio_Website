@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width,initial-scale=1" name="viewport">
+  <meta content="description" name="description">
+  <meta name="google" content="notranslate" />
+  <meta content="Mashup templates have been developed by Orson.io team" name="author">
+
+  <!-- Disable tap highlight on IE -->
+  <meta name="msapplication-tap-highlight" content="no">
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-icon-180x180.png">
+  <link href="./assets/favicon.ico" rel="icon">
+
+  <title>Contact Me</title>  
+
+  <link href="./main.3f6952e4.css" rel="stylesheet">
+
+  <!-- Add custom animations -->
+  <style>
+    /* Fade-in and slide-up for navbar links */
+    .navbar-nav li {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.5s ease-out forwards;
+    }
+
+    .navbar-nav li:nth-child(1) { animation-delay: 0.1s; }
+    .navbar-nav li:nth-child(2) { animation-delay: 0.2s; }
+    .navbar-nav li:nth-child(3) { animation-delay: 0.3s; }
+    .navbar-nav li:nth-child(4) { animation-delay: 0.4s; }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Fade-in and scale for section title */
+    .section-container-spacer h1 {
+      opacity: 0;
+      transform: scale(0.9);
+      animation: fadeInScale 0.8s ease-out 0.3s forwards;
+    }
+
+    @keyframes fadeInScale {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Staggered slide-in for contact info list items */
+    .address-container li {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .address-container li.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .address-container li:nth-child(1) { transition-delay: 0.1s; }
+    .address-container li:nth-child(2) { transition-delay: 0.2s; }
+    .address-container li:nth-child(3) { transition-delay: 0.3s; }
+
+    /* Pulse effect for social icons on hover */
+    .address-container .fa-icon {
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+
+    .address-container .fa-icon:hover {
+      animation: pulse 0.5s ease;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    /* Fade-in for social media title */
+    .address-container h3 {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out 0.4s;
+    }
+
+    .address-container h3.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Fade-in for footer */
+    .footer-container {
+      opacity: 0;
+      animation: fadeIn 1s ease-out 0.5s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* Ensure animations respect dark mode */
+    body.dark-mode .fa-icon {
+      color: #fff; /* Ensure icons are visible in dark mode */
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .navbar-nav li {
+        animation: none; /* Disable navbar animations on mobile for simplicity */
+        opacity: 1;
+        transform: none;
+      }
+      .section-container-spacer h1 {
+        animation-delay: 0.1s; /* Faster animation on mobile */
+      }
+      .address-container li, .address-container h3 {
+        transition-duration: 0.4s; /* Slightly faster on mobile */
+      }
+    }
+  </style>
+</head>
+
+<body>
+<div id="site-border-left"></div>
+<div id="site-border-right"></div>
+<div id="site-border-top"></div>
+<div id="site-border-bottom"></div>
+
+<!-- Add your content of header -->
+<header>
+  <nav class="navbar navbar-fixed-top navbar-default">
+    <div class="container">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="./index.html" title="">01 : Home</a></li>
+          <li><a href="./works.html" title="">02 : Works</a></li>
+          <li><a href="./about.html" title="">03 : About me</a></li>
+          <li><a href="./contact.html" title="">04 : Contact</a></li>
+        </ul>
+      </div> 
+    </div>
+  </nav>
+</header>
+
+<div class="section-container">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="section-container-spacer text-center">
+          <h1 class="h2">03 : Contact me</h1>
+        </div>
+
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+            <div class="row">
+              <div class="col-md-5 address-container">
+                <ul class="list-unstyled">
+                  <li>
+                    <span class="fa-icon">
+                      <i class="fa fa-phone" aria-hidden="true"></i>
+                    </span>
+                    +91 9229224994
+                  </li>
+                  <li>
+                    <span class="fa-icon">
+                      <i class="fa fa-at" aria-hidden="true"></i>
+                    </span>
+                    contact.sohaan@gmail.com
+                  </li>
+                  <li>
+                    <span class="fa-icon">
+                      <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    </span>
+                    Bhopal, M.P.
+                  </li>
+                </ul>
+                <h3>Follow me on social networks</h3>
+                <a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwjV0ZiEovaMAxUVe_UHHdcJO54QFnoECBcQAQ&url=https%3A%2F%2Ftwitter.com%2FSohaanChhabra&usg=AOvVaw2hTyS5RY-o9tJQBRVOm_eF&opi=89978449" title="" class="fa-icon">
+                  <i class="fa fa-twitter"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/sohaan-chhabra-966198336/" title="" class="fa-icon">
+                  <i class="fa fa-linkedin"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer-container text-center">
+  <div class="container">
+    <div class="row">
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function (event) {
+    navActivePage();
+
+    // Scroll-based animation for contact info and social title
+    const elements = document.querySelectorAll('.address-container li, .address-container h3');
+    
+    function checkVisibility() {
+      elements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.8) {
+          el.classList.add('visible');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', checkVisibility);
+    checkVisibility(); // Run on load in case elements are already in view
+  });
+</script>
+
+<script type="text/javascript" src="./main.70a66962.js"></script>
+</body>
+
+</html>
