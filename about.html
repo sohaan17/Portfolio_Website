@@ -43,86 +43,159 @@
     .fade-delay-3 {
       animation-delay: 0.9s;
     }
+
+    .text-with-image {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+
+    .text-with-image .text-content {
+      flex: 1;
+      padding-right: 20px;
+    }
+
+    .text-with-image .image-container {
+      flex-shrink: 0;
+      margin-left: 20px;
+    }
+
+    .image-container img {
+      width: 60%;
+      height: auto;
+      border-radius: 10px;
+    }
   </style>
 </head>
 
 <body>
-<div id="site-border-left"></div>
-<div id="site-border-right"></div>
-<div id="site-border-top"></div>
-<div id="site-border-bottom"></div>
+  <div id="site-border-left"></div>
+  <div id="site-border-right"></div>
+  <div id="site-border-top"></div>
+  <div id="site-border-bottom"></div>
 
-<header>
-  <nav class="navbar navbar-fixed-top navbar-default">
+  <header>
+    <nav class="navbar navbar-fixed-top navbar-default">
+      <div class="container">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"
+          aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="./index.html">01 : Home</a></li>
+            <li><a href="./works.html">02 : Works</a></li>
+            <li><a href="./about.html" class="active">03 : About me</a></li>
+            <li><a href="./contact.html">04 : Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="section-container">
     <div class="container">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
 
-      <div class="collapse navbar-collapse" id="navbar-collapse">
-        <ul class="nav navbar-nav">
-          <li><a href="./index.html">01 : Home</a></li>
-          <li><a href="./works.html">02 : Works</a></li>
-          <li><a href="./about.html">03 : About me</a></li>
-          <li><a href="./contact.html">04 : Contact</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-</header>
-
-<div class="section-container">
-  <div class="container">
-    <div class="row fade-in fade-delay-1">
-      <div class="col-xs-12">
-        <div class="section-container-spacer text-center">
-          <h1 class="h2">03 : About me</h1>
-        </div>
-      </div>
-    </div>
-
-    <div class="row fade-in fade-delay-2">
-      <div class="col-md-10 col-md-offset-1">
-        <div class="row">
-          <div class="col-xs-12 col-md-6">
-            <h3>Sohaan Chhabra</h3>
-            <p>Hello! I'm Sohaan Chhabra, a passionate and dedicated individual with a knack for coding. Over the years, I have honed my skills and competed in various prestigious national competitions, securing top positions and bringing home accolades. My journey in the competitive arena also includes numerous victories in inter-house and inter-school competitions, where I've consistently demonstrated my proficiency and dedication.</p>
-
-            <p>Coding isn't just a hobby for me; it's a passion. I can immerse myself in the world of programming for hours on end, solving complex problems and creating innovative solutions. This relentless drive for excellence and my love for coding have been the cornerstones of my success.</p>
-
-            <p>I thrive on challenges and am constantly seeking opportunities to learn and grow. Whether it's a coding marathon or a high-stakes competition, I'm always ready to give my best and push the boundaries of what's possible.</p>
-          </div>
-
-          <div class="col-xs-12 col-md-6 text-center fade-in fade-delay-3">
-            <img src="./assets/images/profile.png" class="img-responsive" alt="Profile Image" style="width: 60%; height: auto; margin: 0 auto;">
+      <div class="row fade-in fade-delay-1">
+        <div class="col-xs-12">
+          <div class="section-container-spacer text-center">
+            <h1 class="h2">03 : About me</h1>
           </div>
         </div>
       </div>
+
+      <div class="row fade-in fade-delay-2">
+        <div class="col-md-10 col-md-offset-1">
+          <div class="row">
+
+            <!-- Bio with Image -->
+            <div class="col-xs-12">
+              <div class="text-with-image">
+                <div class="text-content">
+                  <h3>Sohaan Chhabra</h3>
+                  <p>Hello! I'm <strong>Sohaan Chhabra</strong>, a passionate tech enthusiast, drone builder, and robotics innovator. Ever since my first line of code, I’ve been driven by a curiosity to understand how things work and a desire to push technology to its limits.</p>
+                  <p>Coding isn’t just a hobby—it’s my passion. I relish solving complex problems, whether that means fine-tuning a PID controller on a LEGO line-follower or writing object-detection scripts on a Raspberry Pi. I thrive in competitive environments and love mentoring others to achieve their best.</p>
+                  <p>I’m always seeking new challenges, from high-stakes national competitions to creative in-house contests. Here’s a comprehensive look at my journey so far:</p>
+
+                  <!-- Achievements -->
+                  <h4>🏅 My Achievements</h4>
+
+                  <p><strong>WSRO Drone Challenge Champion (2023 &amp; 2024):</strong><br>
+                  I secured back-to-back 1st place finishes at the World Science Robotics Olympiad Drone Challenge. Each year, my custom drones mastered mission-oriented tasks—combining speed, obstacle avoidance, and autonomous navigation.</p>
+
+                  <p><strong>IIT Delhi Autonomous Drone Challenge Winner:</strong><br>
+                  Competing against top engineering students nationwide, I designed a fully autonomous drone capable of real-time stabilization, path planning, and object detection. My entry clinched the ₹1.5 lakh grand prize.</p>
+
+                  <p><strong>WRO Mentor – 3rd Place:</strong><br>
+                  As lead mentor, I guided peers to a 3rd-place finish in the World Robot Olympiad. Together, we built a LEGO EV3 robot that autonomously cleared debris—my strategic planning, sensor tuning, and attachment design were key to our success.</p>
+
+                  <p><strong>Tech-Head of School:</strong><br>
+                  Elected to lead our tech club, I organize after-school workshops, train junior teams, and strategize for interschool robotics and coding contests. Under my leadership, our school has claimed multiple trophies across disciplines.</p>
+
+                  <p><strong>Intra-house Competition Champion:</strong><br>
+                  I’ve won numerous school contests in 3D modeling, website development, coding challenges, and even fireless cooking—demonstrating creativity and technical versatility.</p>
+
+                  <p><strong>Major Technical Projects:</strong></p>
+                  <ul>
+                    <li>PID-tuned LEGO EV3 line followers using dual color sensors.</li>
+                    <li>Bluetooth-controlled 4WD robots built with ESP32, Arduino, and L293D drivers.</li>
+                    <li>Wireless EV3 cars operated via PS5 controller sticks for nuanced motion control.</li>
+                    <li>Raspberry Pi 4 vision systems with real-time object detection and audio feedback.</li>
+                  </ul>
+
+                  <p><strong>FPV &amp; Drone Development:</strong><br>
+                  I’ve designed and tuned multiple mini whoop FPV drones using Betaflight and SpeedyBee F4 flight stacks. Currently, I’m programming flip maneuvers on button input and experimenting with advanced builds like the HappyModel Diamond F4 FR.</p>
+
+                  <p><strong>CIFI Cinematic Videography:</strong><br>
+                  As part of my school’s CIFI team, I captured and edited DSLR footage to create award-winning cinematic entries, focusing on storytelling and visual impact.</p>
+
+                  <p><strong>Personal AI Assistant with Gemini API:</strong><br>
+                  I built a personal AI assistant powered by Google’s Gemini API. It automates tasks such as scheduling, email drafting, code snippets, and data lookups—making it my go-to productivity companion.</p>
+
+                  <p><strong>Technical Skillset:</strong><br>
+                  Python, HTML/CSS, JavaScript, C/Arduino, Raspberry Pi, BetaFlight, Pixhawk, EasyEDA, OpenCV, Visual SLAM, and voice-enabled chatbots.</p>
+
+                  <p><strong>Current &amp; Future Projects:</strong><br>
+                  I’m developing a ₹2,500 open-source drone flight controller to make advanced tech accessible to students. Simultaneously, I’m building an autonomous self-driving car for the WRO Nationals using Raspberry Pi 4, IMU sensors, and map localization on a 10 x 10 feet mat.</p>
+                  <!-- end Achievements -->
+
+                </div>
+                <div class="image-container text-center fade-in fade-delay-3">
+                  <img src="./assets/images/profile.png" class="img-responsive" alt="Sohaan Chhabra">
+                </div>
+              </div>
+            </div>
+            <!-- /Bio with Image -->
+
+          </div>
+        </div>
+      </div>
+
     </div>
-
   </div>
-</div>
 
-<footer class="footer-container text-center">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <!-- Footer content if any -->
+  <!-- Footer -->
+  <footer class="footer-container text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <!-- Footer content if any -->
+        </div>
       </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    navActivePage();
-  });
-</script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      navActivePage();
+    });
+  </script>
 
-<script type="text/javascript" src="./main.70a66962.js"></script>
+  <script type="text/javascript" src="./main.70a66962.js"></script>
 
 </body>
 </html>
