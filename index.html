@@ -1,69 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-  <meta content="IE=edge" http-equiv="X-UA-Compatible">
-  <meta content="width=device-width,initial-scale=1" name="viewport">
-  <meta content="description" name="description">
-  <meta name="google" content="notranslate" />
-  <meta content="Mashup templates have been developped by Orson.io team" name="author">
+  <title>Sohaan Chhabra Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Disable tap highlight on IE -->
-  <meta name="msapplication-tap-highlight" content="no">
-  
+  <!-- Favicon and icons -->
   <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-icon-180x180.png">
   <link href="./assets/favicon.ico" rel="icon">
 
-  <title>Title page</title>  
+  <!-- Main CSS -->
+  <link href="./main.3f6952e4.css" rel="stylesheet">
 
-<link href="./main.3f6952e4.css" rel="stylesheet"></head>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
+    html, body {
+      width: 100%;
+      height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      overflow: hidden;
+    }
+
+    #greeting-screen {
+      background: #000;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: absolute;
+      width: 100%;
+      z-index: 2;
+      text-shadow: 0 0 8px rgba(255,255,255,0.6), 0 0 16px rgba(255,255,255,0.3);
+    }
+
+    .greetings {
+      position: relative;
+      font-size: 3.5em;
+      text-align: center;
+    }
+
+    .greetings span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      animation: show 5s steps(1, end) infinite;
+      white-space: nowrap;
+    }
+
+    .greetings span:nth-child(1) { animation-delay: 0s; }
+    .greetings span:nth-child(2) { animation-delay: 0.625s; }
+    .greetings span:nth-child(3) { animation-delay: 1.25s; }
+    .greetings span:nth-child(4) { animation-delay: 1.875s; }
+    .greetings span:nth-child(5) { animation-delay: 2.5s; }
+    .greetings span:nth-child(6) { animation-delay: 3.125s; }
+    .greetings span:nth-child(7) { animation-delay: 3.75s; }
+    .greetings span:nth-child(8) { animation-delay: 4.375s; }
+
+    @keyframes show {
+      0%, 12.5% { opacity: 1; }
+      12.5001%, 100% { opacity: 0; }
+    }
+
+    #main-content {
+      display: none;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+</head>
 <body class="minimal">
-<div id="site-border-left"></div>
-<div id="site-border-right"></div>
-<div id="site-border-top"></div>
-<div id="site-border-bottom"></div>
-<!-- Add your content of header -->
-<header>
-  <nav class="navbar  navbar-fixed-top navbar-inverse">
-    <div class="container">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
 
-      <div class="collapse navbar-collapse" id="navbar-collapse">
-        <ul class="nav navbar-nav ">
-          <li><a href="./index.html" title="">01 : Home</a></li>
-          <li><a href="./works.html" title="">02 : Projects</a></li>
-          <li><a href="./about.html" title="">03 : About me</a></li>
-          <li><a href="./contact.html" title="">04 : Contact</a></li>
-        </ul>
-
-
-      </div> 
+  <!-- GREETING SCREEN -->
+  <div id="greeting-screen">
+    <div class="greetings">
+      <span>Hello</span>
+      <span>नमस्ते</span>
+      <span>こんにちは</span>
+      <span>안녕하세요</span>
+      <span>مرحبا</span>
+      <span>Привет</span>
+      <span>你好</span>
+      <span>שלום</span>
     </div>
-  </nav>
-</header>
-<!-- Add your site or app content here -->
-  <div class="hero-full-container background-image-container white-text-container" style="background-image: url('./assets/images/space.jpg')">
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="hero-full-wrapper">
-            <div class="text-content">
-              <h1><br>
-                <span id="typed-strings">
-                  <span>Hello,</span>
-                  <span>I'm Sohaan Chhabra</span>
-                  <span>A STEM Enthusiast</span>
-                  
-                </span>
-                <span id="typed"></span>
-              </h1>
+  </div>
+
+  <!-- MAIN PAGE CONTENT -->
+  <div id="main-content">
+    <div id="site-border-left"></div>
+    <div id="site-border-right"></div>
+    <div id="site-border-top"></div>
+    <div id="site-border-bottom"></div>
+
+    <header>
+      <nav class="navbar navbar-fixed-top navbar-inverse">
+        <div class="container">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="./index.html">01 : Home</a></li>
+              <li><a href="./works.html">02 : Projects</a></li>
+              <li><a href="./about.html">03 : About me</a></li>
+              <li><a href="./contact.html">04 : Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="hero-full-container background-image-container white-text-container" style="background-image: url('./assets/images/space.jpg')">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="hero-full-wrapper">
+              <div class="text-content">
+                <h1><br>
+                  <span id="typed-strings">
+                    <span>Hello,</span>
+                    <span>I'm Sohaan Chhabra</span>
+                    <span>A STEM Enthusiast</span>
+                  </span>
+                  <span id="typed"></span>
+                </h1>
+              </div>
             </div>
           </div>
         </div>
@@ -71,14 +138,21 @@
     </div>
   </div>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function (event) {
-     type();
-     movingBackgroundImage();
-  });
-</script>
+  <!-- SCRIPTS -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // After ~5 seconds, hide greeting and show main content
+      setTimeout(function () {
+        document.getElementById("greeting-screen").style.display = "none";
+        document.getElementById("main-content").style.display = "block";
 
+        // Trigger homepage animations if needed
+        type();
+        movingBackgroundImage();
+      }, 5000); // Match greeting loop duration
+    });
+  </script>
 
-<script type="text/javascript" src="./main.70a66962.js"></script></body>
-
+  <script type="text/javascript" src="./main.70a66962.js"></script>
+</body>
 </html>
