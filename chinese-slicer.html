@@ -59,7 +59,7 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-analytics.js";
-    import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+    import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit, where, doc, setDoc } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyASEX_ykVUPqdkJpS9YCyknofSv9AAFnuE",
@@ -75,10 +75,10 @@
     const analytics = getAnalytics(app);
     const db = getFirestore(app);
 
-    // Leaderboard functions
-    async function saveScore(name, score) {
-      try { await addDoc(collection(db, "leaderboard"), { name, score }); } 
-      catch (e) { console.error(e); }
+    let playerName = localStorage.getItem("playerName");
+    if (!playerName) {
+      playerName = prompt("Enter your name:") || "Player";
+      localStorage.setItem("playerName", playerName);
     }
 
     async function loadLeaderboard(el) {
@@ -89,12 +89,32 @@
       el.innerHTML = results.map((p,i)=> `<p>${i+1}. ${p.name} — ${p.score}</p>`).join("");
     }
 
-    // Prompt for player name once
-    let playerName = localStorage.getItem("playerName");
-    if(!playerName){
-      playerName = prompt("Enter your name:");
-      if(!playerName) playerName = "Player";
-      localStorage.setItem("playerName", playerName);
+    async function saveScoreIfTop(name, score) {
+      const leaderboardRef = collection(db, "leaderboard");
+      const q = query(leaderboardRef, orderBy("score", "desc"), limit(5));
+      const snapshot = await getDocs(q);
+
+      let entries = [];
+      let playerEntry = null;
+
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        data.id = doc.id;
+        entries.push(data);
+        if (data.name === name) playerEntry = { ...data, id: doc.id };
+      });
+
+      // If player exists, update only if score is higher
+      if (playerEntry) {
+        if (score > playerEntry.score) {
+          await setDoc(doc(db, "leaderboard", playerEntry.id), { name, score });
+        }
+      } else {
+        // Only add if score beats last top5 or leaderboard < 5
+        if (entries.length < 5 || score > entries[entries.length - 1].score) {
+          await addDoc(leaderboardRef, { name, score });
+        }
+      }
     }
 
     // --- GAME CODE BELOW ---
@@ -153,7 +173,7 @@
       function lineIntersectsCircle(x1,y1,x2,y2,cx,cy,cr){
         const dx=x2-x1,dy=y2-y1,fx=x1-cx,fy=y1-cy,a=dx*dx+dy*dy,b=2*(fx*dx+fy*dy),c=fx*fx+fy*fy-cr*cr;
         let t=-b/(2*a);t=Math.max(0,Math.min(1,t));
-        const rx=x1+dx*t,ry=y1+dy*t,dist2=(rx-cx)*(rx-cx)+(ry-cy)*(ry-cy);
+        const rx=x1+dx*t,ry=y1+dy*t;const dist2=(rx-cx)*(rx-cx)+(ry-cy)*(ry-cy);
         return dist2<=cr*cr;
       }
 
@@ -194,7 +214,14 @@
       function startMusic(){try{if(bgm){bgm.volume=0.2;bgm.currentTime=0;bgm.play();}}catch(e){}}
       function stopMusic(){try{if(bgm){bgm.pause();bgm.currentTime=0;}}catch(e){}}
       function startGame(){resetGame();running=true;menuEl.style.display='none';overEl.style.display='none';lastTs=performance.now();startMusic();requestAnimationFrame(tick);}
-      async function endGame(){running=false;finalScoreEl.textContent=String(score);overEl.style.display='flex';stopMusic();await saveScore(playerName,score); await loadLeaderboard(leaderboardOver);}
+      async function endGame(){
+        running=false;
+        finalScoreEl.textContent=String(score);
+        overEl.style.display='flex';
+        stopMusic();
+        await saveScoreIfTop(playerName, score);
+        await loadLeaderboard(leaderboardOver);
+      }
 
       startBtn.addEventListener('click', async ()=>{
         await loadLeaderboard(leaderboardMenu);
