@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chinese Food Slicer</title>
-  <link href="./assets/favicon.ico" rel="icon">
+  <link href="./assets/favicon.ico" rel="icon" />
   <style>
     * { box-sizing: border-box; }
     html, body { height: 100%; margin: 0; background: #0b0f14; color: #fff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
@@ -18,6 +18,12 @@
     .btn { margin-top: 12px; padding: 10px 16px; border: none; border-radius: 8px; background: #19c37d; color: #071018; font-weight: 700; cursor: pointer; }
     .btn:active { transform: translateY(1px); }
     .legend { font-size: 12px; opacity: 0.8; margin-top: 8px; }
+
+    /* Leaderboard styles */
+    #leaderboard { margin-top: 16px; text-align: left; font-size: 14px; max-width: 220px; margin-left: auto; margin-right: auto; }
+    #leaderboard h3 { text-align: center; margin-bottom: 8px; }
+    #leaderboard ol { padding-left: 20px; margin: 0; }
+    #leaderboard li { margin-bottom: 4px; }
   </style>
 </head>
 <body>
@@ -31,20 +37,23 @@
 
   <div class="wrap">
     <canvas id="game"></canvas>
-    <!-- Local background music file -->
     <audio id="bgm" src="./assets/gamesong.mp3" loop preload="auto" style="display:none"></audio>
+
     <div class="center" id="menu">
       <div class="overlay">
         <h2>Chinese Food Slicer</h2>
         <div class="legend">Slice the food with mouse or finger. Avoid bombs!</div>
         <button class="btn" id="startBtn">Start</button>
+        <div id="leaderboard"></div>
       </div>
     </div>
+
     <div class="center" id="gameover" style="display:none;">
       <div class="overlay">
         <h2>Game Over</h2>
         <div>Final Score: <span id="finalScore">0</span></div>
         <button class="btn" id="restartBtn">Play Again</button>
+        <div id="leaderboardOver"></div>
       </div>
     </div>
   </div>
@@ -60,8 +69,48 @@
       const finalScoreEl = document.getElementById('finalScore');
       const startBtn = document.getElementById('startBtn');
       const restartBtn = document.getElementById('restartBtn');
-      // Local audio element for background music
       const bgm = document.getElementById('bgm');
+      const leaderboardEl = document.getElementById('leaderboard');
+      const leaderboardOverEl = document.getElementById('leaderboardOver');
+
+      // Persistent player name
+      let playerName = localStorage.getItem('playerName');
+      if (!playerName) {
+        playerName = prompt('Enter your name:').trim() || 'Player';
+        localStorage.setItem('playerName', playerName);
+      }
+
+      // Leaderboard persistence
+      let leaderboard = JSON.parse(localStorage.getItem('leaderboard') || '[]');
+
+      function saveLeaderboard() {
+        localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
+      }
+
+      function updateLeaderboard(score) {
+        const existing = leaderboard.find(e => e.name === playerName);
+        if (existing) {
+          existing.score = Math.max(existing.score, score);
+        } else {
+          leaderboard.push({ name: playerName, score });
+        }
+        leaderboard.sort((a, b) => b.score - a.score);
+        leaderboard = leaderboard.slice(0, 5);
+        saveLeaderboard();
+      }
+
+      function renderLeaderboard(targetEl) {
+        if (leaderboard.length === 0) {
+          targetEl.innerHTML = '<h3>Leaderboard</h3><div>No scores yet.</div>';
+          return;
+        }
+        const list = leaderboard.map((e, i) =>
+          `<li>${i + 1}. ${e.name} — ${e.score}</li>`
+        ).join('');
+        targetEl.innerHTML = `<h3>Leaderboard</h3><ol>${list}</ol>`;
+      }
+
+      renderLeaderboard(leaderboardEl);
 
       // Resize handling
       function resize() {
@@ -69,27 +118,25 @@
         canvas.height = canvas.clientHeight;
       }
       window.addEventListener('resize', resize);
-      // Initial sizing after layout
       requestAnimationFrame(resize);
 
-      // Face cutout image
+      // Background image
       const faceImg = new Image();
       faceImg.src = './assets/images/Aryan.png';
       let faceReady = false;
       faceImg.onload = () => { faceReady = true; };
 
-      // Game state
+      // Game vars
       let rng = Math.random;
       let running = false;
       let score = 0;
       let lives = 3;
       let time = 0;
       let lastEmit = 0;
-      let emitInterval = 1100; // ms
+      let emitInterval = 1100;
       let particles = [];
       let trail = [];
 
-      // Food/Bomb definitions (emojis to avoid asset loading)
       const FOODS = ['🥟','🍜','🍚','🍣','🍤','🥠','🍱'];
       const BOMB = '💣';
 
@@ -98,19 +145,15 @@
       function spawnItem() {
         const isBomb = rng() < Math.min(0.12 + score * 0.001, 0.28);
         const glyph = isBomb ? BOMB : FOODS[Math.floor(rand(0, FOODS.length))];
-        // Spawn near the horizontal center
         const x = canvas.width * 0.5 + rand(-60, 60);
         const y = canvas.height + 30;
-        // Start slower and gradually increase with time
         const heightScale = Math.max(1, canvas.height / 700);
-        const difficulty = 1 + Math.min(1.0, time / 30); // ramps over ~30s up to 2x
+        const difficulty = 1 + Math.min(1.0, time / 30);
         const speed = rand(420, 620) * heightScale * difficulty;
-        // Launch mostly straight up (reduced horizontal spread)
         const angle = rand(-Math.PI * 0.62, -Math.PI * 0.45);
-        let vx = Math.cos(angle) * (speed/60) * 0.25; // damp horizontal velocity
+        let vx = Math.cos(angle) * (speed/60) * 0.25;
         const vy = Math.sin(angle) * (speed/60);
         const spin = rand(-0.06, 0.06);
-        // Larger food size for better visibility
         const size = rand(44, 68);
         particles.push({ type: 'item', glyph, isBomb, x, y, vx, vy, ax: 0, ay: 0.34, r: 0, spin, size, sliced: false, life: 0 });
       }
@@ -127,7 +170,6 @@
         }
       }
 
-      // Input
       const pointer = { x: 0, y: 0, px: 0, py: 0, down: false };
       function setPointer(x, y) {
         pointer.px = pointer.x; pointer.py = pointer.y;
@@ -135,6 +177,7 @@
         trail.push({ x, y, life: 1 });
         if (trail.length > 24) trail.shift();
       }
+
       canvas.addEventListener('mousemove', e => setPointer(e.offsetX, e.offsetY));
       canvas.addEventListener('mousedown', () => pointer.down = true);
       canvas.addEventListener('mouseup', () => pointer.down = false);
@@ -158,7 +201,6 @@
 
       function update(dt) {
         time += dt;
-        // Emit items
         if (time - lastEmit > emitInterval/1000) {
           lastEmit = time;
           const count = 1 + (rng() < Math.min(0.25 + score*0.001, 0.6) ? 1 : 0);
@@ -166,16 +208,11 @@
           emitInterval = Math.max(450, 1100 - score * 3);
         }
 
-        // Update particles
         for (let i = particles.length - 1; i >= 0; i--) {
           const p = particles[i];
           if (p.type === 'item') {
             p.vx += p.ax * dt * 60; p.vy += p.ay * dt * 60;
-            p.x += p.vx; p.y += p.vy;
-            p.r += p.spin;
-            p.life += dt;
-
-            // Missed item falls out
+            p.x += p.vx; p.y += p.vy; p.r += p.spin; p.life += dt;
             if (p.y > canvas.height + 60) {
               if (!p.isBomb && !p.sliced) {
                 lives -= 1; livesEl.textContent = String(lives);
@@ -185,18 +222,16 @@
               continue;
             }
 
-            // Slice detection
             if (pointer.down && (pointer.x !== pointer.px || pointer.y !== pointer.py) && !p.sliced) {
               const hit = lineIntersectsCircle(pointer.px, pointer.py, pointer.x, pointer.y, p.x, p.y, p.size);
               if (hit) {
                 if (p.isBomb) {
-                  // Bomb penalty
                   lives -= 1; livesEl.textContent = String(lives);
                   spawnJuice(p.x, p.y, '#ff4d4d');
                   particles.splice(i,1);
                   if (lives <= 0) { endGame(); return; }
                 } else {
-                  p.sliced = true; // prevent double count
+                  p.sliced = true;
                   score += 1; scoreEl.textContent = String(score);
                   spawnJuice(p.x, p.y, '#f9d162');
                   spawnShards(p);
@@ -204,16 +239,13 @@
                 }
               }
             }
-          } else if (p.type === 'juice') {
-            p.vy += p.ay; p.x += p.vx; p.y += p.vy; p.life -= dt * 1.2;
-            if (p.life <= 0) particles.splice(i,1);
-          } else if (p.type === 'shard') {
-            p.vy += p.ay; p.x += p.vx; p.y += p.vy; p.r += p.spin; p.life -= dt * 1.1;
+          } else if (p.type === 'juice' || p.type === 'shard') {
+            p.vy += p.ay; p.x += p.vx; p.y += p.vy;
+            p.life -= dt * (p.type === 'juice' ? 1.2 : 1.1);
             if (p.life <= 0) particles.splice(i,1);
           }
         }
 
-        // Trail fade
         for (let i = trail.length - 1; i >= 0; i--) {
           trail[i].life -= dt * 2.5;
           if (trail[i].life <= 0) trail.splice(i,1);
@@ -222,16 +254,13 @@
 
       function render() {
         ctx.clearRect(0,0,canvas.width, canvas.height);
-
-        // Background vignette
         const g = ctx.createRadialGradient(canvas.width*0.5, canvas.height*0.6, 0, canvas.width*0.5, canvas.height*0.6, Math.max(canvas.width, canvas.height)*0.8);
         g.addColorStop(0, '#0b0f14');
         g.addColorStop(1, '#020305');
         ctx.fillStyle = g;
         ctx.fillRect(0,0,canvas.width, canvas.height);
 
-        // Full image background (contain, centered) behind items
-        if (faceReady && faceImg.width > 0 && faceImg.height > 0) {
+        if (faceReady) {
           const scale = Math.min(canvas.width / faceImg.width, canvas.height / faceImg.height);
           const drawW = faceImg.width * scale;
           const drawH = faceImg.height * scale;
@@ -240,7 +269,6 @@
           ctx.drawImage(faceImg, dx, dy, drawW, drawH);
         }
 
-        // Trail
         ctx.lineWidth = 4;
         ctx.lineCap = 'round';
         for (let i = 1; i < trail.length; i++) {
@@ -253,31 +281,21 @@
           ctx.stroke();
         }
 
-        // Particles & items
         for (const p of particles) {
           if (p.type === 'item') {
-            ctx.save();
-            ctx.translate(p.x, p.y);
-            ctx.rotate(p.r);
+            ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.r);
             ctx.font = `${p.size}px system-ui, Apple Color Emoji, Segoe UI Emoji`;
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
+            ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
             ctx.fillText(p.glyph, 0, 0);
             ctx.restore();
           } else if (p.type === 'juice') {
             ctx.fillStyle = p.color;
             ctx.globalAlpha = Math.max(0, p.life);
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, 3, 0, Math.PI*2);
-            ctx.fill();
+            ctx.beginPath(); ctx.arc(p.x, p.y, 3, 0, Math.PI*2); ctx.fill();
             ctx.globalAlpha = 1;
           } else if (p.type === 'shard') {
-            ctx.save();
-            ctx.translate(p.x, p.y);
-            ctx.rotate(p.r);
-            ctx.fillStyle = p.color;
-            ctx.fillRect(-3, -6, 6, 12);
-            ctx.restore();
+            ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.r);
+            ctx.fillStyle = p.color; ctx.fillRect(-3, -6, 6, 12); ctx.restore();
           }
         }
       }
@@ -298,8 +316,8 @@
         scoreEl.textContent = '0'; livesEl.textContent = '3';
       }
 
-      function startMusic() { try { if (bgm) { bgm.volume = 0.2; bgm.currentTime = 0; bgm.play(); } } catch(e) {} }
-      function stopMusic() { try { if (bgm) { bgm.pause(); bgm.currentTime = 0; } } catch(e) {} }
+      function startMusic() { try { bgm.volume = 0.2; bgm.currentTime = 0; bgm.play(); } catch(e) {} }
+      function stopMusic() { try { bgm.pause(); bgm.currentTime = 0; } catch(e) {} }
 
       function startGame() {
         resetGame();
@@ -314,24 +332,20 @@
       function endGame() {
         running = false;
         finalScoreEl.textContent = String(score);
+        updateLeaderboard(score);
+        renderLeaderboard(leaderboardOverEl);
         overEl.style.display = 'flex';
+        renderLeaderboard(leaderboardEl);
         stopMusic();
       }
 
       startBtn.addEventListener('click', startGame);
       restartBtn.addEventListener('click', startGame);
 
-      // Keyboard support to start/restart quickly
-      window.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          if (!running) startGame();
-        }
+      window.addEventListener('keydown', e => {
+        if ((e.key === 'Enter' || e.key === ' ') && !running) startGame();
       });
-
     })();
   </script>
-  
 </body>
 </html>
-
-
