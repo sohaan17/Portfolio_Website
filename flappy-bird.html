@@ -158,6 +158,58 @@
         } catch (e) {}
       }
 
+      // Calculate responsive sizes based on canvas
+      function getGameSizes() {
+        const isMobile = canvas.width < 600;
+        return {
+          // Make the bird VERY large on all devices
+          birdSize: isMobile ? Math.max(110, canvas.width * 0.22) : 150,
+          buildingWidth: isMobile ? Math.max(60, canvas.width * 0.15) : 100,
+          // Starting values for difficulty; will scale with score
+          gap: isMobile ? Math.max(180, canvas.height * 0.35) : 220,
+          // ⬆️ Faster base speed
+          buildingSpeed: isMobile ? 3.5 : 4,
+          // ⬆️ Slightly more frequent buildings
+          buildingInterval: isMobile ? 1500 : 1700
+        };
+      }
+
+      let gameSizes = getGameSizes();
+
+      // Game state
+      let running = false;
+      let score = 0;
+      let highScore = parseInt(localStorage.getItem('flappyHighScore') || '0');
+      highScoreEl.textContent = highScore;
+
+      // Explosion state
+      let explosion = null;
+
+      // Fun visual extras
+      const birdTrail = [];
+      const maxTrailLength = 12;
+      const scorePopups = [];
+
+      // Bird properties
+      const bird = {
+        x: 0,
+        y: 0,
+        width: 0,
+        height: 0,
+        velocity: 0,
+        gravity: 0.5,
+        jumpPower: -8,
+        rotation: 0
+      };
+
+      // Buildings array
+      let buildings = [];
+      let buildingWidth = 0;
+      let gap = 0;
+      let buildingSpeed = gameSizes.buildingSpeed;
+      let lastBuildingTime = 0;
+      let buildingInterval = gameSizes.buildingInterval;
+      
       // Resize handling
       function resize() {
         canvas.width = canvas.clientWidth;
@@ -188,56 +240,6 @@
       let birdReady = false;
       birdImg.onload = () => { birdReady = true; };
 
-      // Game state
-      let running = false;
-      let score = 0;
-      let highScore = parseInt(localStorage.getItem('flappyHighScore') || '0');
-      highScoreEl.textContent = highScore;
-
-      // Explosion state
-      let explosion = null;
-
-      // Fun visual extras
-      const birdTrail = [];
-      const maxTrailLength = 12;
-      const scorePopups = [];
-
-      // Calculate responsive sizes based on canvas
-      function getGameSizes() {
-        const isMobile = canvas.width < 600;
-        return {
-          // Make the bird VERY large on all devices
-          birdSize: isMobile ? Math.max(110, canvas.width * 0.22) : 150,
-          buildingWidth: isMobile ? Math.max(60, canvas.width * 0.15) : 100,
-          // Starting values for difficulty; will scale with score
-          gap: isMobile ? Math.max(180, canvas.height * 0.35) : 220,
-          buildingSpeed: isMobile ? 2.5 : 3,
-          buildingInterval: isMobile ? 1800 : 2000
-        };
-      }
-
-      let gameSizes = getGameSizes();
-
-      // Bird properties
-      const bird = {
-        x: 0,
-        y: 0,
-        width: 0,
-        height: 0,
-        velocity: 0,
-        gravity: 0.5,
-        jumpPower: -8,
-        rotation: 0
-      };
-
-      // Buildings array
-      let buildings = [];
-      let buildingWidth = 0;
-      let gap = 0;
-      let buildingSpeed = 3;
-      let lastBuildingTime = 0;
-      let buildingInterval = 2000;
-      
       // Initialize bird position
       function initBird() {
         bird.x = Math.max(80, canvas.width * 0.15);
@@ -333,11 +335,13 @@
               start: performance.now()
             });
 
-            // Increase difficulty slightly as score grows
-            const difficultyFactor = Math.min(1.2 + score * 0.03, 2.2);
+            // Increase difficulty more aggressively as score grows
+            const difficultyFactor = Math.min(1.3 + score * 0.04, 2.5);
             const minGap = canvas.height * 0.2;
             gap = Math.max(minGap, gameSizes.gap / difficultyFactor);
-            buildingSpeed = 3 + score * 0.15;
+
+            // Start from responsive base speed and ramp up with score
+            buildingSpeed = gameSizes.buildingSpeed + score * 0.2;
           }
 
           // Remove off-screen buildings
@@ -428,8 +432,8 @@
         // Check collisions after buildings are drawn (before bird is drawn)
         if (running) {
           // Check boundaries
-          const groundHeight = 20;
-          if (bird.y + bird.height > canvas.height - groundHeight || bird.y < 0) {
+          const groundHeight2 = 20;
+          if (bird.y + bird.height > canvas.height - groundHeight2 || bird.y < 0) {
             gameOver();
             return;
           }
@@ -658,4 +662,3 @@
   </script>
 </body>
 </html>
-
