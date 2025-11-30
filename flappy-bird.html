@@ -198,26 +198,26 @@
       const difficultyLabelEl = document.getElementById('difficultyLabel');
       const difficultyButtons = document.querySelectorAll('.difficulty-option');
 
-      // Difficulty config
+      // Difficulty config (God is evil now)
       let currentDifficulty = 'beginner';
       const difficultyConfig = {
         beginner: {
           label: 'Beginner',
           speedMul: 1.0,
-          gapMul: 1.05,   // slightly easier
-          intervalMul: 1.1
+          gapMul: 1.1,    // more forgiving
+          intervalMul: 1.15
         },
         pro: {
           label: 'Pro',
-          speedMul: 1.25,
-          gapMul: 1.0,
-          intervalMul: 1.0
+          speedMul: 1.35,
+          gapMul: 0.95,
+          intervalMul: 0.95
         },
         god: {
           label: 'God',
-          speedMul: 1.55,
-          gapMul: 0.85,   // tighter gaps
-          intervalMul: 0.85 // more frequent pipes
+          speedMul: 2.2,   // MUCH faster
+          gapMul: 0.6,     // tiny gaps
+          intervalMul: 0.6 // very frequent buildings
         }
       };
 
@@ -280,7 +280,7 @@
       // Explosion state
       let explosion = null;
 
-      // Fun visual extras
+      // Visual extras
       const birdTrail = [];
       const maxTrailLength = 12;
       const scorePopups = [];
@@ -339,7 +339,6 @@
         bird.rotation = 0;
       }
 
-      // Buildings
       function createBuilding() {
         const groundHeight = 20;
         const minHeight = Math.max(80, canvas.height * 0.15);
@@ -426,7 +425,8 @@
             gap = Math.max(minGap, gameSizes.gap / difficultyFactor);
 
             // Start from difficulty-based base speed and ramp up
-            buildingSpeed = gameSizes.buildingSpeed + score * 0.2;
+            const extraSpeedPerPoint = (currentDifficulty === 'god') ? 0.3 : 0.2;
+            buildingSpeed = gameSizes.buildingSpeed + score * extraSpeedPerPoint;
           }
 
           if (b.x + buildingWidth < 0) {
@@ -671,7 +671,6 @@
           currentDifficulty = level;
           applyDifficultyUI(level);
           if (!running) {
-            // Update sizes immediately so player sees new behaviour on next start
             resize();
           }
         });
