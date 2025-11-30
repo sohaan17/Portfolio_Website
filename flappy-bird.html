@@ -198,7 +198,7 @@
       const difficultyLabelEl = document.getElementById('difficultyLabel');
       const difficultyButtons = document.querySelectorAll('.difficulty-option');
 
-      // Difficulty config (God is evil now)
+      // Difficulty config (God is now properly evil)
       let currentDifficulty = 'beginner';
       const difficultyConfig = {
         beginner: {
@@ -209,15 +209,15 @@
         },
         pro: {
           label: 'Pro',
-          speedMul: 1.35,
+          speedMul: 1.4,
           gapMul: 0.95,
           intervalMul: 0.95
         },
         god: {
           label: 'God',
-          speedMul: 2.2,   // MUCH faster
-          gapMul: 0.6,     // tiny gaps
-          intervalMul: 0.6 // very frequent buildings
+          speedMul: 2.8,   // extremely fast
+          gapMul: 0.45,    // very tiny gaps
+          intervalMul: 0.45 // spam buildings
         }
       };
 
@@ -420,12 +420,16 @@
             });
 
             // Difficulty scaling with score
-            const difficultyFactor = Math.min(1.3 + score * 0.04, 2.5);
+            const baseFactor = (currentDifficulty === 'god') ? 1.5 : 1.3;
+            const perPoint = (currentDifficulty === 'god') ? 0.07 : 0.04;
+            const maxFactor = (currentDifficulty === 'god') ? 3.0 : 2.5;
+
+            const difficultyFactor = Math.min(baseFactor + score * perPoint, maxFactor);
             const minGap = canvas.height * 0.2;
             gap = Math.max(minGap, gameSizes.gap / difficultyFactor);
 
             // Start from difficulty-based base speed and ramp up
-            const extraSpeedPerPoint = (currentDifficulty === 'god') ? 0.3 : 0.2;
+            const extraSpeedPerPoint = (currentDifficulty === 'god') ? 0.45 : 0.2;
             buildingSpeed = gameSizes.buildingSpeed + score * extraSpeedPerPoint;
           }
 
