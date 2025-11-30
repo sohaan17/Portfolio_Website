@@ -50,7 +50,7 @@
       font-size: 14px;
     }
     @media (max-width: 480px) {
-      .hud { gap: 8px; font-size: 12px; }
+      .hud { gap: 6px; font-size: 11px; flex-wrap: wrap; }
       .topbar { padding: 0 12px; height: 50px; }
     }
     .wrap { position: relative; height: 100%; width: 100%; overflow: hidden; }
@@ -70,6 +70,8 @@
       text-align: center; 
       box-shadow: 0 10px 30px rgba(0,0,0,0.4); 
       pointer-events: auto; 
+      max-width: 340px;
+      width: 90%;
     }
     .btn { 
       margin-top: 12px; 
@@ -94,6 +96,44 @@
       h2 { font-size: 20px; }
       .btn { font-size: 14px; padding: 10px 20px; }
     }
+
+    /* Difficulty bar */
+    .difficulty-wrap {
+      margin-top: 10px;
+      text-align: left;
+    }
+    .difficulty-label {
+      font-size: 13px;
+      opacity: 0.8;
+      margin-bottom: 6px;
+    }
+    .difficulty-bar {
+      display: flex;
+      gap: 4px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 999px;
+      padding: 4px;
+    }
+    .difficulty-option {
+      flex: 1;
+      border: none;
+      border-radius: 999px;
+      padding: 6px 0;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      background: transparent;
+      color: #ccd7ff;
+      transition: background 0.15s ease, color 0.15s ease, transform 0.05s ease;
+    }
+    .difficulty-option.active {
+      background: #19c37d;
+      color: #071018;
+      transform: translateY(-1px);
+    }
+    .difficulty-option:active {
+      transform: translateY(0);
+    }
   </style>
 </head>
 <body>
@@ -102,6 +142,7 @@
     <div class="hud">
       <div>Score: <span id="score">0</span></div>
       <div>High Score: <span id="highScore">0</span></div>
+      <div>Mode: <span id="difficultyLabel">Beginner</span></div>
     </div>
   </div>
 
@@ -115,7 +156,20 @@
           alt="Bird"
           style="display:block;margin:12px auto 6px auto;width:180px;height:180px;object-fit:cover;border-radius:50%;box-shadow:0 8px 24px rgba(0,0,0,0.5);border:4px solid rgba(255,255,255,0.85);"
         >
-        <div class="legend">Tap, click, or press SPACE to flap. Avoid the buildings!</div>
+
+        <!-- Difficulty bar -->
+        <div class="difficulty-wrap">
+          <div class="difficulty-label">Difficulty</div>
+          <div class="difficulty-bar">
+            <button type="button" class="difficulty-option active" data-difficulty="beginner">Beginner</button>
+            <button type="button" class="difficulty-option" data-difficulty="pro">Pro</button>
+            <button type="button" class="difficulty-option" data-difficulty="god">God</button>
+          </div>
+        </div>
+
+        <div class="legend" style="margin-top:10px;">
+          Tap, click, or press SPACE to flap. Avoid the buildings!
+        </div>
         <button class="btn" id="startBtn">Start Game</button>
       </div>
     </div>
@@ -141,6 +195,42 @@
       const finalHighScoreEl = document.getElementById('finalHighScore');
       const startBtn = document.getElementById('startBtn');
       const restartBtn = document.getElementById('restartBtn');
+      const difficultyLabelEl = document.getElementById('difficultyLabel');
+      const difficultyButtons = document.querySelectorAll('.difficulty-option');
+
+      // Difficulty config
+      let currentDifficulty = 'beginner';
+      const difficultyConfig = {
+        beginner: {
+          label: 'Beginner',
+          speedMul: 1.0,
+          gapMul: 1.05,   // slightly easier
+          intervalMul: 1.1
+        },
+        pro: {
+          label: 'Pro',
+          speedMul: 1.25,
+          gapMul: 1.0,
+          intervalMul: 1.0
+        },
+        god: {
+          label: 'God',
+          speedMul: 1.55,
+          gapMul: 0.85,   // tighter gaps
+          intervalMul: 0.85 // more frequent pipes
+        }
+      };
+
+      function applyDifficultyUI(level) {
+        difficultyButtons.forEach(btn => {
+          if (btn.dataset.difficulty === level) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        });
+        difficultyLabelEl.textContent = difficultyConfig[level].label;
+      }
 
       // Background music
       const bgAudio = new Audio('./assets/shayaanbg.mp3');
@@ -148,7 +238,6 @@
       bgAudio.volume = 1.0;
       bgAudio.muted = false;
 
-      // Helper to (re)start background music from any user interaction
       function ensureBgAudioPlaying() {
         try {
           const playPromise = bgAudio.play();
@@ -158,19 +247,25 @@
         } catch (e) {}
       }
 
-      // Calculate responsive sizes based on canvas
+      // Game sizes (depend on difficulty + screen)
       function getGameSizes() {
         const isMobile = canvas.width < 600;
-        return {
-          // Make the bird VERY large on all devices
+        const base = {
           birdSize: isMobile ? Math.max(110, canvas.width * 0.22) : 150,
           buildingWidth: isMobile ? Math.max(60, canvas.width * 0.15) : 100,
-          // Starting values for difficulty; will scale with score
           gap: isMobile ? Math.max(180, canvas.height * 0.35) : 220,
-          // ⬆️ Faster base speed
           buildingSpeed: isMobile ? 3.5 : 4,
-          // ⬆️ Slightly more frequent buildings
           buildingInterval: isMobile ? 1500 : 1700
+        };
+
+        const cfg = difficultyConfig[currentDifficulty] || difficultyConfig.beginner;
+
+        return {
+          birdSize: base.birdSize,
+          buildingWidth: base.buildingWidth,
+          gap: base.gap * cfg.gapMul,
+          buildingSpeed: base.buildingSpeed * cfg.speedMul,
+          buildingInterval: base.buildingInterval * cfg.intervalMul
         };
       }
 
@@ -202,31 +297,28 @@
         rotation: 0
       };
 
-      // Buildings array
+      // Buildings
       let buildings = [];
-      let buildingWidth = 0;
-      let gap = 0;
+      let buildingWidth = gameSizes.buildingWidth;
+      let gap = gameSizes.gap;
       let buildingSpeed = gameSizes.buildingSpeed;
-      let lastBuildingTime = 0;
       let buildingInterval = gameSizes.buildingInterval;
-      
+      let lastBuildingTime = 0;
+
       // Resize handling
       function resize() {
         canvas.width = canvas.clientWidth;
         canvas.height = canvas.clientHeight;
         gameSizes = getGameSizes();
         
-        // Update bird size
         bird.width = gameSizes.birdSize;
         bird.height = gameSizes.birdSize;
         
-        // Update building properties
         buildingWidth = gameSizes.buildingWidth;
         gap = gameSizes.gap;
         buildingSpeed = gameSizes.buildingSpeed;
         buildingInterval = gameSizes.buildingInterval;
         
-        // Reset bird position if game not running
         if (!running) {
           initBird();
         }
@@ -234,13 +326,12 @@
       window.addEventListener('resize', resize);
       requestAnimationFrame(resize);
 
-      // Load images
+      // Load bird image
       const birdImg = new Image();
       birdImg.src = './assets/images/shayaan.png';
       let birdReady = false;
       birdImg.onload = () => { birdReady = true; };
 
-      // Initialize bird position
       function initBird() {
         bird.x = Math.max(80, canvas.width * 0.15);
         bird.y = canvas.height / 2;
@@ -248,7 +339,7 @@
         bird.rotation = 0;
       }
 
-      // Create a new building pair
+      // Buildings
       function createBuilding() {
         const groundHeight = 20;
         const minHeight = Math.max(80, canvas.height * 0.15);
@@ -264,7 +355,6 @@
         });
       }
 
-      // Reset game
       function reset() {
         score = 0;
         scoreEl.textContent = score;
@@ -273,10 +363,10 @@
         explosion = null;
         birdTrail.length = 0;
         scorePopups.length = 0;
+        resize(); // recalc sizes for current difficulty
         initBird();
       }
 
-      // Flap/jump
       function flap() {
         if (!running) return;
         ensureBgAudioPlaying();
@@ -284,16 +374,15 @@
         bird.rotation = -20;
       }
 
-      // Update game state
       function update() {
         if (!running) return;
 
-        // Update bird
+        // Bird physics
         bird.velocity += bird.gravity;
         bird.y += bird.velocity;
         bird.rotation = Math.min(bird.rotation + 1, 90);
 
-        // Add to bird trail
+        // Trail
         birdTrail.push({
           x: bird.x + bird.width * 0.25,
           y: bird.y + bird.height * 0.5,
@@ -303,61 +392,53 @@
           birdTrail.shift();
         }
 
-        // Check boundaries (account for ground)
         const groundHeight = 20;
         if (bird.y + bird.height > canvas.height - groundHeight || bird.y < 0) {
           gameOver();
           return;
         }
 
-        // Update buildings
         const now = Date.now();
         if (now - lastBuildingTime > buildingInterval) {
           createBuilding();
           lastBuildingTime = now;
         }
 
-        // Move buildings and handle scoring
         for (let i = buildings.length - 1; i >= 0; i--) {
           const b = buildings[i];
           b.x -= buildingSpeed;
 
-          // Check if bird passed the building
           if (!b.passed && bird.x > b.x + buildingWidth) {
             b.passed = true;
             score++;
             scoreEl.textContent = score;
 
-            // Add score popup at center of gap
+            // Score popup
             scorePopups.push({
               x: b.x + buildingWidth / 2,
               y: b.bottomY - gap / 2,
               start: performance.now()
             });
 
-            // Increase difficulty more aggressively as score grows
+            // Difficulty scaling with score
             const difficultyFactor = Math.min(1.3 + score * 0.04, 2.5);
             const minGap = canvas.height * 0.2;
             gap = Math.max(minGap, gameSizes.gap / difficultyFactor);
 
-            // Start from responsive base speed and ramp up with score
+            // Start from difficulty-based base speed and ramp up
             buildingSpeed = gameSizes.buildingSpeed + score * 0.2;
           }
 
-          // Remove off-screen buildings
           if (b.x + buildingWidth < 0) {
             buildings.splice(i, 1);
           }
         }
       }
 
-      // Draw game
       function draw() {
-        // Clear canvas
-        ctx.fillStyle = '#87CEEB'; // Sky blue background
+        ctx.fillStyle = '#87CEEB';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // Draw ground
         const groundHeight = 20;
         ctx.fillStyle = '#8B4513';
         ctx.fillRect(0, canvas.height - groundHeight, canvas.width, groundHeight);
@@ -372,27 +453,22 @@
           return;
         }
 
-        // Draw buildings styled as city buildings
+        // Buildings
         for (const b of buildings) {
-          // Common colors
           const baseColor = '#253446';
           const edgeHighlight = 'rgba(255, 255, 255, 0.16)';
           const windowColor = '#f1c40f';
           const windowOffColor = '#34495e';
 
-          // Helper to draw one building section (top or bottom)
           function drawBuildingSection(x, y, w, h, isTop) {
             if (h <= 0) return;
 
-            // Main body
             ctx.fillStyle = baseColor;
             ctx.fillRect(x, y, w, h);
 
-            // Left edge highlight
             ctx.fillStyle = edgeHighlight;
             ctx.fillRect(x, y, 4, h);
 
-            // Roof cap
             const roofHeight = Math.min(10, h * 0.1);
             ctx.fillStyle = '#1b2733';
             if (isTop) {
@@ -401,7 +477,6 @@
               ctx.fillRect(x - 4, y, w + 8, roofHeight);
             }
 
-            // Windows grid
             const paddingX = 8;
             const paddingY = 14;
             const winW = 10;
@@ -414,7 +489,6 @@
 
             for (let wy = startY; wy + winH < endY; wy += winH + gapY) {
               for (let wx = x + paddingX; wx + winW < x + w - paddingX; wx += winW + gapX) {
-                // Randomly turn some windows "off"
                 const lit = ((wx + wy) % 3) !== 0;
                 ctx.fillStyle = lit ? windowColor : windowOffColor;
                 ctx.fillRect(wx, wy, winW, winH);
@@ -422,34 +496,26 @@
             }
           }
 
-          // Top building (inverted direction visually)
           drawBuildingSection(b.x, 0, buildingWidth, b.topHeight, true);
-
-          // Bottom building
           drawBuildingSection(b.x, b.bottomY, buildingWidth, b.bottomHeight, false);
         }
 
-        // Check collisions after buildings are drawn (before bird is drawn)
         if (running) {
-          // Check boundaries
           const groundHeight2 = 20;
           if (bird.y + bird.height > canvas.height - groundHeight2 || bird.y < 0) {
             gameOver();
             return;
           }
 
-          // Collision based on the bird's center point only
           const centerX = bird.x + bird.width / 2;
           const centerY = bird.y + bird.height / 2;
 
           for (const b of buildings) {
-            // Top building rect
             const topLeft = b.x;
             const topRight = b.x + buildingWidth;
             const topTop = 0;
             const topBottom = b.topHeight;
 
-            // Bottom building rect
             const bottomLeft = b.x;
             const bottomRight = b.x + buildingWidth;
             const bottomTop = b.bottomY;
@@ -474,7 +540,7 @@
           }
         }
 
-        // Draw bird trail
+        // Trail
         const nowPerf = performance.now();
         for (let i = 0; i < birdTrail.length; i++) {
           const p = birdTrail[i];
@@ -491,7 +557,7 @@
           ctx.restore();
         }
 
-        // Draw bird (hide once explosion has fully finished)
+        // Bird / explosion
         const now = performance.now();
         const showBird = !explosion || now - explosion.start > explosion.duration * 0.3;
 
@@ -509,7 +575,7 @@
           ctx.restore();
         }
 
-        // Draw score popups
+        // Score popups
         for (let i = scorePopups.length - 1; i >= 0; i--) {
           const p = scorePopups[i];
           const life = 600;
@@ -529,13 +595,11 @@
           ctx.restore();
         }
 
-        // Draw explosion effect on game over
         if (explosion) {
           const t = (now - explosion.start) / explosion.duration;
           if (t >= 0 && t <= 1) {
             const maxRadius = bird.width * 1.5;
 
-            // Outer ring
             ctx.save();
             ctx.globalAlpha = 1 - t;
             ctx.strokeStyle = '#ffcc00';
@@ -544,7 +608,6 @@
             ctx.arc(explosion.x, explosion.y, maxRadius * t, 0, Math.PI * 2);
             ctx.stroke();
 
-            // Inner flash
             ctx.fillStyle = 'rgba(255, 80, 0,' + (0.7 * (1 - t)) + ')';
             ctx.beginPath();
             ctx.arc(explosion.x, explosion.y, (bird.width * 0.4) * (1 - t * 0.7), 0, Math.PI * 2);
@@ -557,7 +620,6 @@
         }
       }
 
-      // Game loop
       function gameLoop() {
         update();
         draw();
@@ -566,7 +628,6 @@
         }
       }
 
-      // Start game
       function startGame() {
         reset();
         running = true;
@@ -577,9 +638,7 @@
         gameLoop();
       }
 
-      // Game over
       function gameOver() {
-        // Trigger explosion animation at bird's current center
         explosion = {
           x: bird.x + bird.width / 2,
           y: bird.y + bird.height / 2,
@@ -589,7 +648,6 @@
 
         running = false;
 
-        // Stop background music
         try {
           bgAudio.pause();
           bgAudio.currentTime = 0;
@@ -605,33 +663,46 @@
         overEl.style.display = 'flex';
       }
 
-      // Event listeners - support both click and touch for mobile
+      // Difficulty click handlers
+      difficultyButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const level = btn.dataset.difficulty;
+          if (!level || level === currentDifficulty) return;
+          currentDifficulty = level;
+          applyDifficultyUI(level);
+          if (!running) {
+            // Update sizes immediately so player sees new behaviour on next start
+            resize();
+          }
+        });
+      });
+
+      applyDifficultyUI(currentDifficulty);
+
+      // Start / restart
       function handleStartGame(e) {
         e.preventDefault();
         e.stopPropagation();
         startGame();
       }
-      
       startBtn.addEventListener('click', handleStartGame);
       startBtn.addEventListener('touchend', handleStartGame);
-      
+
       function handleRestartGame(e) {
         e.preventDefault();
         e.stopPropagation();
         startGame();
       }
-      
       restartBtn.addEventListener('click', handleRestartGame);
       restartBtn.addEventListener('touchend', handleRestartGame);
 
-      // Touch and mouse controls
+      // Controls
       canvas.addEventListener('click', flap);
       canvas.addEventListener('touchstart', (e) => {
         e.preventDefault();
         flap();
       }, { passive: false });
       
-      // Keyboard controls
       window.addEventListener('keydown', (e) => {
         if (e.code === 'Space') {
           e.preventDefault();
@@ -639,7 +710,6 @@
         }
       });
 
-      // Prevent default touch behaviors
       document.addEventListener('touchmove', (e) => {
         if (e.target === canvas || e.target.closest('.wrap')) {
           e.preventDefault();
@@ -652,7 +722,7 @@
         }
       }, { passive: false });
 
-      // Initial draw
+      // Initial draw loop
       function initDraw() {
         draw();
         requestAnimationFrame(initDraw);
