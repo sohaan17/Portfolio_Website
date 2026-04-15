@@ -5,9 +5,7 @@
   <title>Sohaan Chhabra Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
   <link href="./main.3f6952e4.css" rel="stylesheet">
 
   <style>
@@ -15,26 +13,230 @@
 
     body, html {
       height: 100%;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background: black;
       padding-top: 60px;
+      color: #ffffff;
     }
 
     /* ===== NAVBAR ===== */
     .navbar {
-      background: rgba(0,0,0,0.7);
+      background: rgba(0,0,0,0.8);
       border: none;
       z-index: 1000;
+      backdrop-filter: blur(10px); /* Modern touch */
     }
 
     .navbar-nav {
       text-align: center;
+      float: none;
+      display: flex;
+      justify-content: center;
     }
 
-    .navbar-nav li {
-      margin: 10px 0;
+    .navbar-nav li a {
+      color: #fff !important;
+      transition: 0.3s;
     }
 
+    .navbar-nav li a:hover {
+      text-shadow: 0 0 10px #fff;
+    }
+
+    /* ===== GREETING SCREEN (FIXED CENTERING) ===== */
+    #greeting-screen {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center, #111, #000);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      cursor: pointer;
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .greetings {
+      height: 100px; /* Fixed height to prevent jumping */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      font-weight: 300;
+      color: white;
+      text-align: center;
+      letter-spacing: 4px;
+      /* Premium Glow */
+      text-shadow: 0 0 15px rgba(255,255,255,0.7), 
+                   0 0 30px rgba(255,255,255,0.3);
+    }
+
+    .greetings span {
+      display: none;
+      animation: fadeUp 0.6s ease-out;
+    }
+
+    .greetings span.active {
+      display: inline-block;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: url('./assets/images/space.jpg') center/cover no-repeat;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7); /* Darkened for better text visibility */
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 5rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 0;
+      /* White Collar Glow */
+      text-shadow: 0 0 12px rgba(255,255,255,0.5),
+                   0 0 25px rgba(255,255,255,0.2);
+    }
+
+    .hero span {
+      display: block;
+      font-size: 1.4rem;
+      font-weight: 300;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      margin-top: 15px;
+      color: #fff;
+      opacity: 0.9;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(15px); filter: blur(5px); }
+      to { opacity: 1; transform: translateY(0); filter: blur(0); }
+    }
+
+    /* ===== MOBILE OPTIMIZATION ===== */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.8rem; }
+      .hero span { font-size: 1rem; letter-spacing: 2px; }
+      .greetings { font-size: 2.5rem; }
+      .navbar-nav { flex-direction: column; }
+    }
+
+    #main-content {
+      display: none;
+    }
+
+    .skip-text {
+      position: absolute;
+      bottom: 40px;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.5;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="greeting-screen">
+  <div class="greetings" id="greetings">
+    <span class="active">Hello</span>
+    <span>नमस्ते</span>
+    <span>こんにちは</span>
+    <span>안녕하세요</span>
+    <span>مرحبا</span>
+    <span>Привет</span>
+    <span>你好</span>
+    <span>שלום</span>
+  </div>
+  <div class="skip-text">Click to explore</div>
+</div>
+
+<div id="main-content">
+
+  <nav class="navbar navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+          <span class="icon-bar" style="background:white"></span>
+          <span class="icon-bar" style="background:white"></span>
+          <span class="icon-bar" style="background:white"></span>
+        </button>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="./index.html">HOME</a></li>
+          <li><a href="./works.html">PROJECTS</a></li>
+          <li><a href="./about.html">ABOUT</a></li>
+          <li><a href="./contact.html">CONTACT</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Sohaan Chhabra</h1>
+      <span>Robotics • Drones • Engineering</span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const greetingElements = document.querySelectorAll("#greetings span");
+  let currentIndex = 0;
+
+  function cycleGreetings() {
+    greetingElements.forEach(el => el.classList.remove("active"));
+    currentIndex = (currentIndex + 1) % greetingElements.length;
+    greetingElements[currentIndex].classList.add("active");
+  }
+
+  let greetingInterval = setInterval(cycleGreetings, 800);
+
+  function enterSite() {
+    clearInterval(greetingInterval);
+    const screen = document.getElementById("greeting-screen");
+    screen.style.opacity = "0";
+    
+    setTimeout(() => {
+      screen.style.display = "none";
+      document.getElementById("main-content").style.display = "block";
+    }, 800);
+  }
+
+  // Auto-enter after the loop or on click
+  setTimeout(enterSite, 4500); 
+  document.getElementById("greeting-screen").addEventListener("click", enterSite);
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>
     /* ===== GREETING SCREEN ===== */
     #greeting-screen {
       position: fixed;
