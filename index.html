@@ -8,6 +8,37 @@
   <link href="./main.3f6952e4.css" rel="stylesheet">
 
   <style>
+    .hero {
+  position: relative;
+  color: #fff;
+}
+
+/* DARK OVERLAY for readability */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6); /* adjust 0.6 → 0.75 if needed */
+  z-index: 1;
+}
+
+/* Keep text above overlay */
+.hero h1,
+.hero span {
+  position: relative;
+  z-index: 2;
+}
+
+/* EXTRA VISIBILITY BOOST */
+.hero h1 {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255,255,255,0.6),
+               0 0 25px rgba(255,255,255,0.3);
+}
+
+.hero span {
+  color: #e0e0e0;
+}
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body, html {
