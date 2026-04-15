@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link href="./main.3f6952e4.css" rel="stylesheet">
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -23,8 +22,6 @@
       border: none;
       z-index: 1000;
     }
-    .navbar-nav { text-align: center; }
-    .navbar-nav li { margin: 10px 0; }
 
     /* GREETING SCREEN */
     #greeting-screen {
@@ -84,7 +81,7 @@
       transition: opacity 1s ease;
     }
 
-    /* HERO SECTION */
+    /* HERO */
     .hero {
       position: relative;
       height: 100vh;
@@ -96,14 +93,14 @@
       overflow: hidden;
     }
 
-    /* BLURRED BACKGROUND */
+    /* BLUR BACKGROUND */
     .hero::before {
       content: "";
       position: absolute;
       inset: 0;
       background: url('./assets/images/space.jpg') center/cover no-repeat;
       filter: blur(8px) brightness(0.6);
-      transform: scale(1.1); /* avoids blur edges */
+      transform: scale(1.1);
       z-index: 1;
     }
 
@@ -122,9 +119,8 @@
       z-index: 3;
       font-size: 4.5rem;
       font-weight: 800;
-      color: #ffffff;
+      color: #fff;
       line-height: 1.3;
-
       text-shadow: 
         0 0 10px rgba(255,255,255,0.8),
         0 0 25px rgba(255,255,255,0.6),
@@ -134,12 +130,10 @@
     .hero span {
       display: block;
       font-size: 1.4rem;
-      opacity: 0.95;
       margin-top: 15px;
       letter-spacing: 4px;
       text-transform: uppercase;
       color: #e0e0e0;
-
       text-shadow: 0 0 8px rgba(255,255,255,0.5);
     }
 
@@ -151,7 +145,7 @@
 </head>
 <body>
 
-<!-- GREETING SCREEN -->
+<!-- GREETING -->
 <div id="greeting-screen">
   <div class="greetings" id="greetings">
     <span class="active">Hello</span>
@@ -166,7 +160,7 @@
   <div class="skip-text">tap anywhere to skip</div>
 </div>
 
-<!-- MAIN CONTENT -->
+<!-- MAIN -->
 <div id="main-content">
   <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
@@ -196,8 +190,14 @@
 </div>
 
 <script>
+document.addEventListener("DOMContentLoaded", function () {
+
   const greetings = document.querySelectorAll("#greetings span");
+  const screen = document.getElementById("greeting-screen");
+  const main = document.getElementById("main-content");
+
   let index = 0;
+  let entered = false;
 
   function cycleGreetings() {
     greetings.forEach(el => el.classList.remove("active"));
@@ -207,216 +207,27 @@
 
   let interval = setInterval(cycleGreetings, 700);
 
-  let entered = false;
-
   function enterSite() {
     if (entered) return;
     entered = true;
 
     clearInterval(interval);
 
-    const screen = document.getElementById("greeting-screen");
-    const main = document.getElementById("main-content");
-
     screen.style.opacity = "0";
 
     setTimeout(() => {
-      screen.style.display = "none";
+      screen.remove();
     }, 800);
 
     main.style.visibility = "visible";
     main.style.opacity = "1";
   }
 
-  setTimeout(enterSite, greetings.length * 700);
+  screen.addEventListener("click", enterSite);
 
-  document.getElementById("greeting-screen").addEventListener("click", enterSite);
-</script>
+  setTimeout(enterSite, greetings.length * 700 + 500);
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-</body>
-</html>      z-index: 9999;
-      cursor: pointer;
-      transition: opacity 0.8s ease;
-    }
-
-    .greetings {
-      font-size: 4rem;
-      color: white;
-      text-align: center;
-      letter-spacing: 3px;
-      height: 100px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-shadow: 0 0 10px #fff, 
-                   0 0 20px #fff, 
-                   0 0 40px rgba(255,255,255,0.6);
-    }
-
-    .greetings span {
-      display: none;
-      animation: fade 0.8s ease;
-    }
-
-    .greetings span.active {
-      display: block;
-    }
-
-    @keyframes fade {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .skip-text {
-      position: absolute;
-      bottom: 40px;
-      font-size: 0.9rem;
-      opacity: 0.6;
-      color: white;
-      letter-spacing: 2px;
-    }
-
-    /* MAIN CONTENT */
-    #main-content {
-      opacity: 0;
-      visibility: hidden;
-      height: 100%;
-      transition: opacity 1s ease;
-    }
-
-    .hero {
-      position: relative;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: white;
-      background: url('./assets/images/space.jpg') center/cover;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.65);
-      z-index: 1;
-    }
-
-    .hero h1 {
-      position: relative;
-      z-index: 2;
-      font-size: 4.5rem;
-      font-weight: 700;
-      line-height: 1.3;
-      text-shadow: 0 0 15px rgba(255,255,255,0.5),
-                   0 0 30px rgba(255,255,255,0.2);
-    }
-
-    .hero span {
-      display: block;
-      font-size: 1.4rem;
-      opacity: 0.9;
-      margin-top: 15px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-    }
-
-    @media (max-width: 768px) {
-      .hero h1 { font-size: 2.5rem; }
-      .greetings { font-size: 2.5rem; }
-    }
-  </style>
-</head>
-<body>
-
-<!-- GREETING SCREEN -->
-<div id="greeting-screen">
-  <div class="greetings" id="greetings">
-    <span class="active">Hello</span>
-    <span>नमस्ते</span>
-    <span>こんにちは</span>
-    <span>안녕하세요</span>
-    <span>مرحبا</span>
-    <span>Привет</span>
-    <span>你好</span>
-    <span>שלום</span>
-  </div>
-  <div class="skip-text">tap anywhere to skip</div>
-</div>
-
-<!-- MAIN CONTENT -->
-<div id="main-content">
-  <nav class="navbar navbar-fixed-top navbar-inverse">
-    <div class="container">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbar-collapse">
-        <ul class="nav navbar-nav">
-          <li><a href="./index.html">01 : Home</a></li>
-          <li><a href="./works.html">02 : Projects</a></li>
-          <li><a href="./about.html">03 : About me</a></li>
-          <li><a href="./contact.html">04 : Contact</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <div class="hero">
-    <h1>
-      Hello,<br>
-      I'm Sohaan Chhabra
-      <span>Robotics • Drones • Engineering</span>
-    </h1>
-  </div>
-</div>
-
-<script>
-  const greetings = document.querySelectorAll("#greetings span");
-  let index = 0;
-
-  function cycleGreetings() {
-    greetings.forEach(el => el.classList.remove("active"));
-    index = (index + 1) % greetings.length;
-    greetings[index].classList.add("active");
-  }
-
-  let interval = setInterval(cycleGreetings, 700);
-
-  let entered = false;
-
-  function enterSite() {
-    if (entered) return;
-    entered = true;
-
-    clearInterval(interval);
-
-    const screen = document.getElementById("greeting-screen");
-    const main = document.getElementById("main-content");
-
-    // Fade out
-    screen.style.opacity = "0";
-
-    // Remove completely after animation
-    setTimeout(() => {
-      screen.style.display = "none";
-    }, 800);
-
-    // Show main content
-    main.style.visibility = "visible";
-    main.style.opacity = "1";
-  }
-
-  // Auto transition after full cycle
-  setTimeout(enterSite, greetings.length * 700);
-
-  document.getElementById("greeting-screen").addEventListener("click", enterSite);
+});
 </script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
