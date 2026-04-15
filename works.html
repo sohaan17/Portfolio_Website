@@ -59,7 +59,7 @@
       position: relative;
       border-radius: 20px;
       overflow: hidden;
-      margin-bottom: 40px;
+      margin-bottom: 60px;
       height: 350px;
       cursor: pointer;
     }
@@ -103,22 +103,23 @@
       font-size: 14px;
     }
 
-    /* GRID */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-    }
+  .projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 35px; /* increased spacing */
+  margin-top: 30px; /* space from featured project */
+}
 
     /* CARD */
     .project-card {
-      background: #151515;
-      border-radius: 18px;
-      overflow: hidden;
-      border: 1px solid #222;
-      transition: 0.3s;
-    }
+  background: #151515;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid #222;
+  transition: 0.3s;
 
+  padding-bottom: 10px; /* adds internal breathing space */
+}
     .project-card:hover {
       transform: translateY(-8px);
       border-color: #444;
