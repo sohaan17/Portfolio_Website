@@ -3,201 +3,221 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta content="IE=edge" http-equiv="X-UA-Compatible">
-  <meta content="width=device-width, initial-scale=1" name="viewport">
-  <meta content="description" name="description">
-  <meta name="google" content="notranslate">
-  <meta name="author" content="Mashup templates have been developed by Orson.io team">
-  <meta name="msapplication-tap-highlight" content="no">
-
-  <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-icon-180x180.png">
-  <link href="./assets/favicon.ico" rel="icon">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>About Me - Sohaan Chhabra</title>
 
-  <link href="./main.3f6952e4.css" rel="stylesheet">
+  <link href="./assets/favicon.ico" rel="icon">
 
   <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0d0d0d;
+      color: #fff;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      padding: 15px 30px;
+      background: #111;
+      display: flex;
+      gap: 20px;
+    }
+
+    .navbar a {
+      color: #aaa;
+      text-decoration: none;
+    }
+
+    .navbar a.active {
+      color: #fff;
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    /* HERO */
+    .about-hero {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .profile-img {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    }
+
+    /* TITLES */
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      margin-top: 50px;
+      margin-bottom: 15px;
+      font-size: 22px;
+    }
+
+    /* CARDS */
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .highlight-card {
+      background: #151515;
+      padding: 20px;
+      border-radius: 15px;
+      transition: 0.3s;
+      border: 1px solid #222;
+    }
+
+    .highlight-card:hover {
+      transform: translateY(-5px);
+      border-color: #444;
+    }
+
+    /* LIST */
+    .compact-list {
+      padding-left: 20px;
+    }
+
+    .compact-list li {
+      margin-bottom: 8px;
+    }
+
+    /* FADE */
     .fade-in {
       opacity: 0;
       transform: translateY(20px);
-      animation: fadeInUp 1.5s ease forwards;
+      animation: fadeIn 1s ease forwards;
     }
 
-    @keyframes fadeInUp {
+    @keyframes fadeIn {
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
 
-    .fade-delay-1 {
-      animation-delay: 0.3s;
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .about-hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
     }
 
-    .fade-delay-2 {
-      animation-delay: 0.6s;
-    }
-
-    .fade-delay-3 {
-      animation-delay: 0.9s;
-    }
-
-    .text-with-image {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: flex-start;
-    }
-
-    .text-with-image .text-content {
-      flex: 1;
-      padding-right: 20px;
-    }
-
-    .text-with-image .image-container {
-      flex-shrink: 0;
-      margin-left: 20px;
-    }
-
-    .image-container img {
-      width: 60%;
-      height: auto;
-      border-radius: 10px;
-    }
   </style>
 </head>
 
 <body>
-  <div id="site-border-left"></div>
-  <div id="site-border-right"></div>
-  <div id="site-border-top"></div>
-  <div id="site-border-bottom"></div>
 
-  <header>
-    <nav class="navbar navbar-fixed-top navbar-default">
-      <div class="container">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"
-          aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="./index.html">01 : Home</a></li>
-            <li><a href="./works.html">02 : Works</a></li>
-            <li><a href="./about.html" class="active">03 : About me</a></li>
-            <li><a href="./contact.html">04 : Contact</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header>
-
-  <div class="section-container">
-    <div class="container">
-
-      <div class="row fade-in fade-delay-1">
-        <div class="col-xs-12">
-          <div class="section-container-spacer text-center">
-            <h1 class="h2">03 : About me</h1>
-          </div>
-        </div>
-      </div>
-
-      <div class="row fade-in fade-delay-2">
-        <div class="col-md-10 col-md-offset-1">
-          <div class="row">
-
-            <div class="col-xs-12">
-              <div class="text-with-image">
-                <div class="text-content">
-                  <h3>Sohaan Chhabra</h3>
-                  <p>Hey! I’m <strong>Sohaan</strong>. If you know me from school or tuition, you’ve probably seen me with a drone or a bot in hand. I love building stuff—whether it's robots, websites, or custom tech setups—and figuring out how to make them smarter.</p>
-
-                  <p>I made this website to share some of the things I’ve built over time. It’s not just a list of projects, but more like a digital journal of the tech I’ve explored and the challenges I’ve enjoyed solving.</p>
-
-                  <p>I enjoy being part of competitions, mentoring juniors, and always trying to one-up my previous builds. Below are some of the highlights from my journey so far—</p>
-
-                  <h4>🏅 My Highlights</h4>
-
-                  <p><strong>WSRO Drone Challenge Champion (2023 &amp; 2024):</strong><br>
-                  I bagged 1st place two years in a row at WSRO by designing drones that were fast and could dodge obstacles with ease (after hours of crashing in practice, of course).</p>
-
-                  <p><strong>IIT Delhi Autonomous Drone Challenge Winner:</strong><br>
-                  This was a big one—competing against college teams, I built an autonomous drone that could pick up stuff with an electromagnet and then drop it at a designated location. Winning the ₹1.5 lakh prize pool at 17 still feels surreal.</p>
-
-                  <p><strong>WRO Mentor – 3rd Place:</strong><br>
-                  I mentored a WRO team that came 3rd nationally. Our EV3 bot could navigate tough missions, and I handled the strategy, coding, and sensor tuning.</p>
-
-                  <p><strong>Tech-Head of School:</strong><br>
-                  As Tech-Head, I run workshops, train juniors, and help organize robotics and coding events. It’s fun helping others learn and watching them improve.</p>
-
-                  <p><strong>School Intra-house Competitions:</strong><br>
-                  I’ve won a bunch of school events in coding, 3D design, web dev, and even fireless cooking (don’t ask how that happened).</p>
-
-                  <p><strong>Stuff I’ve Built:</strong></p>
-                  <ul>
-                    <li>LEGO EV3 bots with PID line following (with two color sensors).</li>
-                    <li>Bluetooth-controlled 4WD bots using ESP32 and Arduino.</li>
-                    <li>EV3 car controlled via PS5 joystick—left stick to move, right to steer.</li>
-                    <li>Raspberry Pi + webcam + speaker to detect stuff and speak back.</li>
-                  </ul>
-
-                  <p><strong>Mini FPV Drones:</strong><br>
-                  I’ve built and tuned a few micro drones using Betaflight. I even programmed one to do flips on button press—still perfecting it, but it works!</p>
-
-                  <p><strong>Cinematic Stuff:</strong><br>
-                  For a school event, I used my DSLR to shoot and edit a cinematic video as part of our CIFI team. Really enjoyed putting the visuals together.</p>
-
-                  <p><strong>AI Assistant (built with Gemini API):</strong><br>
-                  I made my own AI assistant that can answer questions, generate code, send emails, and help with daily tasks. It’s like my sidekick during projects.</p>
-
-                  <p><strong>Tools I Use:</strong><br>
-                  Python, HTML, CSS, JS, Arduino, Raspberry Pi, Betaflight, Pixhawk, OpenCV, EasyEDA, SLAM, and voice chatbot stuff.</p>
-
-                  <p><strong>What I'm Building Now:</strong><br>
-                  - A low-cost open-source drone controller (₹2.5k target)<br>
-                  - A self-driving car for WRO Nationals using Pi, sensors, and map tracking on a 10x10 ft mat</p>
-
-                  <h4>👀 Outside the Code</h4>
-                  <p>I get super excited by new tech—especially drones and dev boards. I like editing videos, watching drone races, and tinkering with electronics late at night (sometimes too late).</p>
-
-                  <p>If you're checking this out, feel free to reach out if you spot bugs or just want to talk tech!</p>
-                </div>
-
-                <div class="image-container text-center fade-in fade-delay-3">
-                  <img src="./assets/images/profile.png" class="img-responsive" alt="Sohaan Chhabra">
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-    </div>
+  <!-- NAV -->
+  <div class="navbar">
+    <a href="./index.html">Home</a>
+    <a href="./works.html">Works</a>
+    <a href="./about.html" class="active">About</a>
+    <a href="./contact.html">Contact</a>
   </div>
 
-  <footer class="footer-container text-center">
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12">
-          <!-- Footer content if any -->
-        </div>
+  <!-- MAIN -->
+  <div class="container">
+
+    <h1 class="fade-in">About Me</h1>
+
+    <!-- HERO -->
+    <div class="about-hero fade-in">
+
+      <div>
+        <h2>Sohaan Chhabra</h2>
+        <p>
+          I build drones, robots, and random tech ideas that somehow turn into real projects.
+        </p>
+        <p>
+          From crashing FPV drones to winning national competitions — it's been a fun ride.
+        </p>
+        <p>
+          This site is my tech playground — things I’ve built, tested, and improved over time.
+        </p>
       </div>
+
+      <div>
+        <img src="./assets/images/profile.png" class="profile-img" alt="Sohaan">
+      </div>
+
     </div>
-  </footer>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      navActivePage();
-    });
-  </script>
+    <!-- HIGHLIGHTS -->
+    <h3 class="section-title">🏅 Highlights</h3>
 
-  <script type="text/javascript" src="./main.70a66962.js"></script>
+    <div class="highlight-grid fade-in">
+
+      <div class="highlight-card">
+        <h4>WSRO Champion</h4>
+        <p>1st place in 2023 & 2024 with high-speed drones.</p>
+      </div>
+
+      <div class="highlight-card">
+        <h4>IIT Delhi Winner</h4>
+        <p>Autonomous payload drone — ₹1.5 lakh prize.</p>
+      </div>
+
+      <div class="highlight-card">
+        <h4>WRO Mentor</h4>
+        <p>Led team to 3rd place nationally.</p>
+      </div>
+
+      <div class="highlight-card">
+        <h4>Tech Head</h4>
+        <p>Mentoring juniors + running workshops.</p>
+      </div>
+
+    </div>
+
+    <!-- BUILDS -->
+    <h3 class="section-title">⚙️ What I Build</h3>
+
+    <ul class="compact-list fade-in">
+      <li>EV3 bots with PID line following</li>
+      <li>ESP32 + Arduino 4WD bots</li>
+      <li>PS5-controlled robot car</li>
+      <li>Raspberry Pi vision + voice system</li>
+      <li>FPV drones (Betaflight tuning)</li>
+    </ul>
+
+    <!-- TOOLS -->
+    <h3 class="section-title">🧠 Tools I Use</h3>
+
+    <p class="fade-in">
+      Python • Arduino • Raspberry Pi • OpenCV • Betaflight • Pixhawk • HTML/CSS/JS • SLAM
+    </p>
+
+    <!-- CURRENT -->
+    <h3 class="section-title">🚀 Currently Building</h3>
+
+    <ul class="compact-list fade-in">
+      <li>Low-cost open-source drone controller (~₹2.5k)</li>
+      <li>Self-driving WRO car (map tracking + sensors)</li>
+    </ul>
+
+    <!-- EXTRA -->
+    <h3 class="section-title">👀 Outside Tech</h3>
+
+    <p class="fade-in">
+      Drone racing, video editing, and late-night electronics experiments.
+    </p>
+
+  </div>
 
 </body>
 </html>
