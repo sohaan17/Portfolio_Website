@@ -3,156 +3,245 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta content="IE=edge" http-equiv="X-UA-Compatible">
-  <meta content="width=device-width,initial-scale=1" name="viewport">
-  <meta content="description" name="description">
-  <meta name="google" content="notranslate" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects - Sohaan Chhabra</title>
 
-  <!-- Disable tap highlight on IE -->
-  <meta name="msapplication-tap-highlight" content="no">
-  
-  <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-icon-180x180.png">
   <link href="./assets/favicon.ico" rel="icon">
 
-  <title>Projects</title>  
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0d0d0d;
+      color: white;
+    }
 
-  <link href="./main.3f6952e4.css" rel="stylesheet">
-  <link href="./animations.css" rel="stylesheet">
+    /* NAV */
+    .navbar {
+      display: flex;
+      gap: 25px;
+      padding: 20px 40px;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(10px);
+    }
+
+    .navbar a {
+      color: #aaa;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .navbar a:hover,
+    .navbar a.active {
+      color: white;
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #888;
+      margin-bottom: 40px;
+    }
+
+    /* 🔥 FEATURED PROJECT */
+    .featured-project {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 40px;
+      height: 350px;
+      cursor: pointer;
+    }
+
+    .featured-project img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(60%);
+      transition: 0.4s;
+    }
+
+    .featured-project:hover img {
+      transform: scale(1.05);
+    }
+
+    .featured-content {
+      position: absolute;
+      bottom: 30px;
+      left: 30px;
+      max-width: 500px;
+    }
+
+    .featured-title {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .featured-desc {
+      color: #ccc;
+      margin-bottom: 15px;
+    }
+
+    .featured-btn {
+      display: inline-block;
+      padding: 10px 16px;
+      background: white;
+      color: black;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    /* GRID */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    /* CARD */
+    .project-card {
+      background: #151515;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid #222;
+      transition: 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      border-color: #444;
+    }
+
+    .project-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .project-content {
+      padding: 20px;
+    }
+
+    .project-title {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .project-desc {
+      color: #aaa;
+      font-size: 14px;
+    }
+
+    .project-btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 8px 14px;
+      border-radius: 10px;
+      text-decoration: none;
+      background: #222;
+      color: white;
+      font-size: 13px;
+      transition: 0.3s;
+    }
+
+    .project-btn:hover {
+      background: #333;
+    }
+
+  </style>
 </head>
 
-<body class="">
-<div id="site-border-left"></div>
-<div id="site-border-right"></div>
-<div id="site-border-top"></div>
-<div id="site-border-bottom"></div>
+<body>
 
-<header>
-  <nav class="navbar navbar-fixed-top navbar-default">
-    <div class="container">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbar-collapse">
-        <ul class="nav navbar-nav">
-          <li><a href="./index.html" title="">01 : Home</a></li>
-          <li><a href="./works.html" title="">02 : Works</a></li>
-          <li><a href="./about.html" title="">03 : About me</a></li>
-          <li><a href="./contact.html" title="">04 : Contact</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-</header>
-
-<div class="section-container">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-8 col-sm-offset-2 section-container-spacer">
-        <div class="text-center">
-          <h1 class="h2">02 : Projects</h1>
-          <p>"Believe you can and you're halfway there." - Theodore Roosevelt</p>
-        </div>
-      </div>
-
-      <div class="col-md-12">
-        <div id="myCarousel" class="carousel slide projects-carousel">
-          <div class="carousel-inner">
-            <div class="item active">
-              <div class="row">
-                <div class="col-sm-4">
-                  <a href="./work01.html" title="" class="black-image-project-hover">
-                    <img src="./assets/images/console.png" alt="" class="img-responsive">
-                  </a>
-                  <div class="card-container card-container-lg">
-                    <h4>001/006</h4>
-                    <h3>HANDHELD MINI GAMING CONSOLE</h3>
-                    <p>A mini retro console made using Arduino Uno and Oled Display</p>
-                    <a href="./work01.html" title="" class="btn btn-default">Discover</a>
-                  </div>
-                </div>
-                <div class="col-sm-4">
-                  <a href="./works02.html" title="" class="black-image-project-hover">
-                    <img src="./assets/images/F22.png" alt="" class="img-responsive">
-                  </a>
-                  <div class="card-container card-container-lg">
-                    <h4>002/006</h4>
-                    <h3>F22 Raptor DIY RC Plane</h3>
-                    <p>My First scale model RC plane I made at 17</p>
-                    <a href="./works02.html" title="" class="btn btn-default">Discover</a>
-                  </div>
-                </div>
-                <div class="col-sm-4">
-                  <a href="./work03.html" title="" class="black-image-project-hover">
-                    <img src="./assets/images/Self-driving.jpg" alt="" class="img-responsive">
-                  </a>
-                  <div class="card-container card-container-lg">
-                    <h4>003/006</h4>
-                    <h3>Prototype for Self Driving Car</h3>
-                    <p>My DIY Self Driving Scaled version car I made at 16 for a Competition</p>
-                    <a href="./work03.html" title="" class="btn btn-default">Discover</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="row">
-                <div class="col-sm-4">
-                  <a href="./work04.html" class="black-image-project-hover
-
-">
-                    <img src="./assets/images/FPV_Drone.png" alt="Image" class="img-responsive">
-                  </a>
-                  <div class="card-container">
-                    <h4>004/006</h4>
-                    <h3>FPV Racing Drone</h3>
-                    <p>Where Adrenaline Meets Innovation</p>
-                    <a href="./work04.html" class="btn btn-default">Discover</a>
-                  </div>
-                </div>
-                <div class="col-sm-4">
-                  <a href="./work05.html" class="black-image-project-hover">
-                    <img src="./assets/images/Payload_Drone.jpeg" alt="Image" class="img-responsive">
-                  </a>
-                  <div class="card-container">
-                    <h4>005/006</h4>
-                    <h3>Autonomous Payload Delivery Drone</h3>
-                    <p>A drone that I had designed for a competition.</p>
-                    <a href="./work05.html" class="btn btn-default">Discover</a>
-                  </div>
-                </div>
-                <div class="col-sm-4">
-                  <a href="./works06.html" class="black-image-project-hover">
-                    <img src="./assets/images/BankingApp.png" alt="Image" class="img-responsive">
-                  </a>
-                  <div class="card-container">
-                    <h4>006/006</h4>
-                    <h3>A Better Banking Payment Gateway</h3>
-                    <p>I had made this project with my friends as a part of a Hackathon</p>
-                    <a href="./works06.html" class="btn btn-default">Discover</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-          <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
-        </div>
-      </div>
-    </div>
+  <!-- NAV -->
+  <div class="navbar">
+    <a href="./index.html">Home</a>
+    <a href="./works.html" class="active">Projects</a>
+    <a href="./about.html">About</a>
+    <a href="./contact.html">Contact</a>
   </div>
-</div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", function (event) {
-    navActivePage();
-  });
-</script>
-<script type="text/javascript" src="./main.70a66962.js"></script>
+  <!-- MAIN -->
+  <div class="container">
+
+    <h1>Projects</h1>
+    <p class="subtitle">Things I've built, tested, and improved</p>
+
+    <!-- 🔥 FEATURED PROJECT -->
+    <a href="./work05.html" class="featured-project">
+      <img src="./assets/images/Payload_Drone.jpeg">
+      <div class="featured-content">
+        <div class="featured-title">Autonomous Payload Delivery Drone</div>
+        <div class="featured-desc">
+          IIT Delhi winning autonomous drone with payload pickup + drop system
+        </div>
+        <span class="featured-btn">View Project</span>
+      </div>
+    </a>
+
+    <!-- GRID -->
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <img src="./assets/images/FPV_Drone.png" class="project-img">
+        <div class="project-content">
+          <div class="project-title">FPV Racing Drone</div>
+          <div class="project-desc">High-speed freestyle + racing drone</div>
+          <a href="./work04.html" class="project-btn">View</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="./assets/images/Self-driving.jpg" class="project-img">
+        <div class="project-content">
+          <div class="project-title">Self Driving Car</div>
+          <div class="project-desc">Scaled autonomous vehicle prototype</div>
+          <a href="./work03.html" class="project-btn">View</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="./assets/images/F22.png" class="project-img">
+        <div class="project-content">
+          <div class="project-title">F22 RC Plane</div>
+          <div class="project-desc">DIY scale model aircraft build</div>
+          <a href="./works02.html" class="project-btn">View</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="./assets/images/console.png" class="project-img">
+        <div class="project-content">
+          <div class="project-title">Mini Gaming Console</div>
+          <div class="project-desc">Arduino + OLED system</div>
+          <a href="./work01.html" class="project-btn">View</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="./assets/images/BankingApp.png" class="project-img">
+        <div class="project-content">
+          <div class="project-title">Payment Gateway</div>
+          <div class="project-desc">Hackathon fintech project</div>
+          <a href="./works06.html" class="project-btn">View</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
 </body>
 </html>
