@@ -5,46 +5,34 @@
   <title>Sohaan Chhabra Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
   <link href="./main.3f6952e4.css" rel="stylesheet">
 
   <style>
-    .hero {
-  position: relative;
-  color: #fff;
-}
-
-/* DARK OVERLAY for readability */
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6); /* adjust 0.6 → 0.75 if needed */
-  z-index: 1;
-}
-
-/* Keep text above overlay */
-.hero h1,
-.hero span {
-  position: relative;
-  z-index: 2;
-}
-
-/* EXTRA VISIBILITY BOOST */
-.hero h1 {
-  color: #ffffff;
-  text-shadow: 0 0 10px rgba(255,255,255,0.6),
-               0 0 25px rgba(255,255,255,0.3);
-}
-
-.hero span {
-  color: #e0e0e0;
-}
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body, html {
       height: 100%;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background: black;
+      padding-top: 60px;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      background: rgba(0,0,0,0.7);
+      border: none;
+      z-index: 1000;
+    }
+
+    .navbar-nav {
+      text-align: center;
+    }
+
+    .navbar-nav li {
+      margin: 10px 0;
     }
 
     /* ===== GREETING SCREEN ===== */
@@ -97,26 +85,39 @@
     }
 
     .hero {
+      position: relative;
       height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       color: white;
-      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)),
-                  url('./assets/images/space.jpg') center/cover;
+      background: url('./assets/images/space.jpg') center/cover;
+    }
+
+    /* Overlay */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      z-index: 1;
     }
 
     .hero h1 {
+      position: relative;
+      z-index: 2;
       font-size: 3.5rem;
       line-height: 1.3;
       animation: fadeUp 1s ease;
+      text-shadow: 0 0 10px rgba(255,255,255,0.6),
+                   0 0 25px rgba(255,255,255,0.3);
     }
 
     .hero span {
       display: block;
       font-size: 1.2rem;
-      opacity: 0.7;
+      opacity: 0.8;
       margin-top: 10px;
     }
 
@@ -125,10 +126,19 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Navbar fix */
-    .navbar {
-      background: transparent;
-      border: none;
+    /* ===== MOBILE FIX ===== */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero span {
+        font-size: 1rem;
+      }
+
+      .greetings {
+        font-size: 2rem;
+      }
     }
 
   </style>
@@ -148,27 +158,37 @@
     <span>你好</span>
     <span>שלום</span>
   </div>
-  <div class="skip-text">click anywhere to skip</div>
+  <div class="skip-text">tap anywhere to skip</div>
 </div>
 
 <!-- MAIN CONTENT -->
 <div id="main-content">
 
-  <header>
-    <nav class="navbar navbar-fixed-top navbar-inverse">
-      <div class="container">
-        <div class="collapse navbar-collapse" id="navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="./index.html">01 : Home</a></li>
-            <li><a href="./works.html">02 : Projects</a></li>
-            <li><a href="./about.html">03 : About me</a></li>
-            <li><a href="./contact.html">04 : Contact</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
 
+      <!-- HAMBURGER -->
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <!-- MENU -->
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="./index.html">01 : Home</a></li>
+          <li><a href="./works.html">02 : Projects</a></li>
+          <li><a href="./about.html">03 : About me</a></li>
+          <li><a href="./contact.html">04 : Contact</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- HERO -->
   <div class="hero">
     <h1>
       Hello,<br>
@@ -179,6 +199,7 @@
 
 </div>
 
+<!-- JS -->
 <script>
   const greetings = document.querySelectorAll("#greetings span");
   let index = 0;
@@ -202,13 +223,13 @@
     }, 600);
   }
 
-  // Auto enter after 3 sec
   setTimeout(enterSite, 3000);
-
-  // Click to skip
   document.getElementById("greeting-screen").addEventListener("click", enterSite);
-
 </script>
+
+<!-- REQUIRED FOR NAVBAR -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <script src="./main.70a66962.js"></script>
 
