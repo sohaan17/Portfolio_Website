@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Arisa – Humanoid Robot</title>
+
+  <link href="./assets/favicon.ico" rel="icon">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0d0d0d;
+      color: white;
+    }
+
+    /* NAV */
+    .navbar {
+      display: flex;
+      gap: 25px;
+      padding: 20px 40px;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(10px);
+    }
+
+    .navbar a {
+      color: #aaa;
+      text-decoration: none;
+    }
+
+    .navbar a.active,
+    .navbar a:hover {
+      color: white;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      height: 60vh;
+      overflow: hidden;
+    }
+
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(60%);
+    }
+
+    .hero-content {
+      position: absolute;
+      bottom: 40px;
+      left: 40px;
+    }
+
+    .hero h1 {
+      font-size: 36px;
+      margin: 0;
+    }
+
+    .hero p {
+      color: #ccc;
+    }
+
+    /* CONTENT */
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section h2 {
+      margin-bottom: 10px;
+    }
+
+    .section p {
+      color: #bbb;
+      line-height: 1.6;
+    }
+
+    /* COMPONENT LIST */
+    .components {
+      background: #111;
+      padding: 20px;
+      border-radius: 15px;
+      margin-top: 15px;
+    }
+
+    .components li {
+      margin-bottom: 8px;
+    }
+
+    /* MEDIA */
+    img, video {
+      width: 100%;
+      border-radius: 15px;
+      margin-top: 15px;
+    }
+
+    /* IMAGE GRID */
+    .image-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    /* BUTTON */
+    .btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 15px;
+      background: white;
+      color: black;
+      border-radius: 10px;
+      text-decoration: none;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <div class="navbar">
+    <a href="./index.html">Home</a>
+    <a href="./works.html" class="active">Projects</a>
+    <a href="./about.html">About</a>
+    <a href="./contact.html">Contact</a>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <img src="./assets/images/arisa1.jpg">
+    <div class="hero-content">
+      <h1>Arisa – Humanoid Robot</h1>
+      <p>AI-powered humanoid built on InMoov</p>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="container">
+
+    <div class="section">
+      <h2>The Idea</h2>
+      <p>
+        Arisa is my attempt at building a fully functional humanoid robot — combining mechanics,
+        electronics, and AI into one system. The goal is to create a robot that can interact,
+        respond, and feel more lifelike over time.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>How It Works</h2>
+      <p>
+        Arisa is powered by a Raspberry Pi 4 and uses Gemini as the LLM. Speech-to-text and
+        text-to-speech are processed locally, allowing independent interaction without relying
+        fully on cloud systems.
+      </p>
+
+      <ul class="components">
+        <li>Raspberry Pi 4</li>
+        <li>Servo Motors (Eyes & Mouth)</li>
+        <li>3D Printed Structure (InMoov Based)</li>
+        <li>Local Speech Processing (STT & TTS)</li>
+        <li>Gemini (LLM Integration)</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Progress</h2>
+      <p>
+        So far, I have completed the head and torso. Arisa can move her eyes in all directions
+        and open/close her mouth. Currently working on arms, with plans to build the full body.
+      </p>
+    </div>
+
+    <!-- IMAGES -->
+    <div class="section">
+      <h2>Build Gallery</h2>
+      <div class="image-grid">
+        <img src="./assets/images/arisa1.jpg">
+        <img src="./assets/images/arisa2.jpg">
+      </div>
+    </div>
+
+    <!-- VIDEO -->
+    <div class="section">
+      <h2>Demo</h2>
+      <video controls>
+        <source src="./assets/videos/arisa.mp4" type="video/mp4">
+      </video>
+    </div>
+
+  </div>
+
+</body>
+</html>
