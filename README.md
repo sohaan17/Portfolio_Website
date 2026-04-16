@@ -16,7 +16,8 @@ Tech Exploration — Continuous learning across hardware + software
 📐 Philosophy
 I believe in learning by building — breaking things, fixing them, and pushing systems beyond their intended limits.
 From tuning FPV drones to working on autonomous navigation, my work is driven by curiosity and precision.
+
+
 📬 Connect
 🌐 Website: https://www.sohaanchhabra.in
-💼 LinkedIn: (add your link)
 📧 Email: contact.sohaan@gmail.com
