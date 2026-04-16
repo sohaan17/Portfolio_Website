@@ -1,5 +1,6 @@
 Sohaan Chhabra
 Building at the intersection of Robotics, Drones & Intelligent Systems
+
 🌐 Live: https://www.sohaanchhabra.in
 
 🧠 Overview
@@ -19,5 +20,7 @@ From tuning FPV drones to working on autonomous navigation, my work is driven by
 
 
 📬 Connect
+
 🌐 Website: https://www.sohaanchhabra.in
+
 📧 Email: contact.sohaan@gmail.com
