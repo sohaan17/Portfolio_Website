@@ -5,13 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SC Labs – Design • Prototype • Manufacture</title>
 
-  <!-- =====================================================
-       SECURITY HEADERS (meta tag equivalents)
-       Full HTTP headers are set via _headers file for GitHub Pages/Netlify.
-       These meta tags provide a fallback layer of protection.
-       ===================================================== -->
-
-  <!-- Upgrade insecure requests: forces HTTP → HTTPS for all sub-resources -->
   <meta http-equiv="Content-Security-Policy"
         content="
           default-src 'self';
@@ -23,32 +16,21 @@
           frame-ancestors 'none';
           upgrade-insecure-requests;
         " />
-
-  <!-- Prevents the page from being embedded in iframes (clickjacking defence) -->
   <meta http-equiv="X-Frame-Options" content="DENY" />
-
-  <!-- Stops browsers from MIME-sniffing responses away from the declared content-type -->
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-
-  <!-- Controls how much referrer info is sent when navigating away -->
   <meta name="referrer" content="strict-origin-when-cross-origin" />
-
-  <!-- Disables browser features that aren't needed on this page -->
   <meta http-equiv="Permissions-Policy"
         content="camera=(), microphone=(), geolocation=(), payment=(), usb=()" />
 
-  <!-- SEO Meta Tags -->
   <meta name="description" content="SC Labs is an engineering and rapid prototyping studio offering 3D printing (PLA, PETG, TPU), CAD design, prototype development, and custom engineering parts." />
   <meta name="keywords" content="3D printing, CAD design, rapid prototyping, engineering parts, PLA, PETG, TPU, CNC machining, SC Labs" />
   <meta name="author" content="SC Labs" />
 
-  <!-- Open Graph -->
   <meta property="og:title" content="SC Labs – Design • Prototype • Manufacture" />
   <meta property="og:description" content="Turning ideas into reality through 3D printing, CAD design, rapid prototyping, and engineering solutions." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.sohaanchhabra.in/sc-labs" />
 
-  <!-- Fonts: Bebas Neue (industrial display) + DM Sans (clean body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -62,7 +44,7 @@
       --surface:     #111111;
       --surface-2:   #181818;
       --border:      #2a2a2a;
-      --accent:      #f0c040;   /* industrial amber/gold */
+      --accent:      #f0c040;
       --accent-dim:  #c49a20;
       --text:        #f0ede8;
       --text-muted:  #888;
@@ -77,13 +59,8 @@
       --shadow:       0 4px 24px rgba(0,0,0,0.5);
     }
 
-    /* =====================================================
-       RESET & BASE
-       ===================================================== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
     body {
       background: var(--bg);
       color: var(--text);
@@ -92,14 +69,10 @@
       line-height: 1.65;
       overflow-x: hidden;
     }
-
     ::selection { background: var(--accent); color: #000; }
-
     a { color: inherit; text-decoration: none; }
-
     img { display: block; max-width: 100%; }
 
-    /* Subtle grid texture overlay on the whole page */
     body::before {
       content: '';
       position: fixed;
@@ -112,9 +85,7 @@
       z-index: 0;
     }
 
-    /* =====================================================
-       NAV
-       ===================================================== */
+    /* NAV */
     .nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -128,22 +99,14 @@
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
-
     .nav-logo {
       font-family: var(--font-display);
       font-size: 1.6rem;
       letter-spacing: 0.08em;
       color: var(--accent);
     }
-
     .nav-logo span { color: var(--text-muted); font-size: 0.75rem; font-family: var(--font-mono); letter-spacing: 0.12em; margin-left: 8px; vertical-align: middle; }
-
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-
+    .nav-links { display: flex; gap: 32px; list-style: none; }
     .nav-links a {
       font-size: 0.78rem;
       font-family: var(--font-mono);
@@ -152,10 +115,7 @@
       text-transform: uppercase;
       transition: color var(--transition);
     }
-
     .nav-links a:hover { color: var(--accent); }
-
-    /* Back to portfolio link */
     .nav-back {
       font-size: 0.75rem;
       font-family: var(--font-mono);
@@ -167,7 +127,6 @@
       gap: 6px;
     }
     .nav-back:hover { color: var(--accent); }
-
     .hamburger {
       display: none;
       flex-direction: column;
@@ -177,17 +136,9 @@
       border: none;
       padding: 4px;
     }
-    .hamburger span {
-      display: block;
-      width: 22px;
-      height: 2px;
-      background: var(--text);
-      transition: var(--transition);
-    }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); transition: var(--transition); }
 
-    /* =====================================================
-       HERO
-       ===================================================== */
+    /* HERO */
     .hero {
       position: relative;
       min-height: 100vh;
@@ -196,8 +147,6 @@
       padding: 64px 5vw 0;
       overflow: hidden;
     }
-
-    /* Large decorative text behind hero */
     .hero-bg-text {
       position: absolute;
       bottom: -0.15em;
@@ -211,8 +160,6 @@
       line-height: 1;
       z-index: 0;
     }
-
-    /* Animated scan-line effect */
     .hero::after {
       content: '';
       position: absolute;
@@ -223,18 +170,8 @@
       opacity: 0.25;
       pointer-events: none;
     }
-
-    @keyframes scan {
-      0%   { top: 0; }
-      100% { top: 100%; }
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 720px;
-    }
-
+    @keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
+    .hero-content { position: relative; z-index: 1; max-width: 720px; }
     .hero-tag {
       display: inline-flex;
       align-items: center;
@@ -248,15 +185,7 @@
       opacity: 0;
       animation: fadeUp 0.8s 0.2s forwards;
     }
-
-    .hero-tag::before {
-      content: '';
-      display: block;
-      width: 24px;
-      height: 1px;
-      background: var(--accent);
-    }
-
+    .hero-tag::before { content: ''; display: block; width: 24px; height: 1px; background: var(--accent); }
     .hero-title {
       font-family: var(--font-display);
       font-size: clamp(80px, 14vw, 160px);
@@ -266,9 +195,7 @@
       opacity: 0;
       animation: fadeUp 0.8s 0.4s forwards;
     }
-
     .hero-title .accent { color: var(--accent); }
-
     .hero-subtitle {
       font-family: var(--font-mono);
       font-size: clamp(0.75rem, 1.5vw, 1rem);
@@ -279,7 +206,6 @@
       opacity: 0;
       animation: fadeUp 0.8s 0.6s forwards;
     }
-
     .hero-desc {
       font-size: clamp(1rem, 1.8vw, 1.2rem);
       color: var(--text-muted);
@@ -289,7 +215,6 @@
       opacity: 0;
       animation: fadeUp 0.8s 0.7s forwards;
     }
-
     .hero-buttons {
       display: flex;
       gap: 16px;
@@ -298,9 +223,7 @@
       animation: fadeUp 0.8s 0.9s forwards;
     }
 
-    /* =====================================================
-       BUTTONS
-       ===================================================== */
+    /* BUTTONS */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -316,53 +239,19 @@
       border: 1px solid transparent;
       white-space: nowrap;
     }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #000;
-      font-weight: 500;
-      border-color: var(--accent);
-    }
-
-    .btn-primary:hover {
-      background: #fff;
-      border-color: #fff;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(240,192,64,0.3);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--text);
-      border-color: var(--border);
-    }
-
-    .btn-outline:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      transform: translateY(-2px);
-    }
-
+    .btn-primary { background: var(--accent); color: #000; font-weight: 500; border-color: var(--accent); }
+    .btn-primary:hover { background: #fff; border-color: #fff; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(240,192,64,0.3); }
+    .btn-outline { background: transparent; color: var(--text); border-color: var(--border); }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
     .btn-ig {
       background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
       color: #fff;
       border-color: transparent;
     }
-    .btn-ig:hover {
-      opacity: 0.88;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(220,39,67,0.35);
-    }
+    .btn-ig:hover { opacity: 0.88; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(220,39,67,0.35); }
 
-    /* =====================================================
-       SECTIONS SHARED
-       ===================================================== */
-    section {
-      position: relative;
-      z-index: 1;
-      padding: 120px 5vw;
-    }
-
+    /* SECTIONS */
+    section { position: relative; z-index: 1; padding: 120px 5vw; }
     .section-label {
       font-family: var(--font-mono);
       font-size: 0.7rem;
@@ -374,15 +263,7 @@
       align-items: center;
       gap: 10px;
     }
-    .section-label::after {
-      content: '';
-      display: block;
-      flex: 1;
-      max-width: 48px;
-      height: 1px;
-      background: var(--accent);
-    }
-
+    .section-label::after { content: ''; display: block; flex: 1; max-width: 48px; height: 1px; background: var(--accent); }
     .section-title {
       font-family: var(--font-display);
       font-size: clamp(40px, 6vw, 72px);
@@ -391,121 +272,27 @@
       margin-bottom: 64px;
     }
 
-    /* =====================================================
-       SERVICES SECTION
-       ===================================================== */
+    /* SERVICES */
     .services { background: var(--surface); }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-    }
-
-    .service-card {
-      background: var(--surface);
-      padding: 48px 40px;
-      position: relative;
-      overflow: hidden;
-      transition: background var(--transition);
-      cursor: default;
-    }
-
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .service-card { background: var(--surface); padding: 48px 40px; position: relative; overflow: hidden; transition: background var(--transition); cursor: default; }
     .service-card:hover { background: var(--surface-2); }
-
-    .service-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: var(--accent);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s ease;
-    }
-
+    .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
     .service-card:hover::before { transform: scaleX(1); }
+    .service-icon { width: 48px; height: 48px; margin-bottom: 24px; color: var(--accent); }
+    .service-number { position: absolute; top: 24px; right: 32px; font-family: var(--font-display); font-size: 4rem; color: var(--text-faint); line-height: 1; }
+    .service-name { font-family: var(--font-display); font-size: 1.6rem; letter-spacing: 0.06em; margin-bottom: 12px; }
+    .service-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+    .service-badge { display: inline-block; margin-top: 16px; font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); border: 1px solid var(--border); padding: 4px 10px; border-radius: 100px; }
 
-    .service-icon {
-      width: 48px;
-      height: 48px;
-      margin-bottom: 24px;
-      color: var(--accent);
-    }
-
-    .service-number {
-      position: absolute;
-      top: 24px;
-      right: 32px;
-      font-family: var(--font-display);
-      font-size: 4rem;
-      color: var(--text-faint);
-      line-height: 1;
-    }
-
-    .service-name {
-      font-family: var(--font-display);
-      font-size: 1.6rem;
-      letter-spacing: 0.06em;
-      margin-bottom: 12px;
-    }
-
-    .service-desc {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    .service-badge {
-      display: inline-block;
-      margin-top: 16px;
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      border: 1px solid var(--border);
-      padding: 4px 10px;
-      border-radius: 100px;
-    }
-
-    /* =====================================================
-       PRODUCTS SECTION
-       ===================================================== */
-    .products-intro {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 64px;
-      flex-wrap: wrap;
-      gap: 24px;
-    }
-
+    /* PRODUCTS */
+    .products-intro { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 64px; flex-wrap: wrap; gap: 24px; }
     .products-intro .section-title { margin-bottom: 0; }
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+    .product-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition); }
+    .product-card:hover { transform: translateY(-6px); border-color: rgba(240,192,64,0.3); box-shadow: 0 16px 48px rgba(0,0,0,0.5); }
 
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 24px;
-    }
-
-    .product-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
-    }
-
-    .product-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(240,192,64,0.3);
-      box-shadow: 0 16px 48px rgba(0,0,0,0.5);
-    }
-
-    /* Product image — real photos */
+    /* ---- FIXED: product image area with reliable fallback ---- */
     .product-img {
       width: 100%;
       aspect-ratio: 4/3;
@@ -513,251 +300,76 @@
       position: relative;
       overflow: hidden;
     }
-
     .product-img img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center;
       display: block;
       transition: transform 0.5s ease;
+      /* prevent layout jump while loading */
+      background: var(--surface-2);
     }
+    .product-card:hover .product-img img { transform: scale(1.06); }
 
-    .product-card:hover .product-img img {
-      transform: scale(1.06);
-    }
-
-    /* Category tag on image */
-    .product-tag {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      font-family: var(--font-mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      background: rgba(10,10,10,0.82);
-      color: var(--accent);
-      border: 1px solid rgba(240,192,64,0.3);
-      padding: 3px 8px;
-      border-radius: 100px;
-      backdrop-filter: blur(4px);
-    }
-
-    /* Filter tabs */
-    .filter-tabs {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 40px;
-    }
-
-    .filter-tab {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 7px 16px;
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      background: transparent;
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: all var(--transition);
-    }
-
-    .filter-tab:hover,
-    .filter-tab.active {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: rgba(240,192,64,0.06);
-    }
-
-    /* Hidden product cards during filter */
-    .product-card.hidden {
+    /* Fallback placeholder shown when image fails */
+    .product-img .img-fallback {
       display: none;
-    }
-
-    .product-body { padding: 24px; }
-
-    .product-name {
-      font-family: var(--font-display);
-      font-size: 1.3rem;
-      letter-spacing: 0.06em;
-      margin-bottom: 8px;
-    }
-
-    .product-desc {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.55;
-      margin-bottom: 20px;
-    }
-
-    .product-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .product-price {
-      font-family: var(--font-mono);
-      font-size: 0.85rem;
-      color: var(--accent);
-      letter-spacing: 0.05em;
-    }
-
-    .product-price span {
-      font-size: 0.65rem;
-      color: var(--text-muted);
-      display: block;
-    }
-
-    .btn-sm {
-      padding: 9px 18px;
-      font-size: 0.68rem;
-    }
-
-    /* =====================================================
-       WHY CHOOSE SC LABS
-       ===================================================== */
-    .why { background: var(--surface); }
-
-    .why-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 32px;
-    }
-
-    .why-card {
-      padding: 40px 32px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      background: var(--bg);
-      position: relative;
-      overflow: hidden;
-      transition: border-color var(--transition);
-    }
-
-    .why-card:hover { border-color: rgba(240,192,64,0.4); }
-
-    .why-card::after {
-      content: attr(data-n);
       position: absolute;
-      bottom: -8px;
-      right: 16px;
-      font-family: var(--font-display);
-      font-size: 6rem;
-      color: rgba(240,192,64,0.04);
-      line-height: 1;
-      user-select: none;
-    }
-
-    .why-icon {
-      width: 40px;
-      height: 40px;
-      margin-bottom: 20px;
-      color: var(--accent);
-    }
-
-    .why-title {
-      font-family: var(--font-display);
-      font-size: 1.3rem;
-      letter-spacing: 0.06em;
-      margin-bottom: 10px;
-    }
-
-    .why-desc {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    /* =====================================================
-       QUOTE SECTION
-       ===================================================== */
-
-    /* =====================================================
-       FOOTER
-       ===================================================== */
-    footer {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      padding: 64px 5vw;
-      display: grid;
-      grid-template-columns: 1fr auto;
+      inset: 0;
       align-items: center;
-      gap: 32px;
-    }
-
-    .footer-brand h2 {
-      font-family: var(--font-display);
-      font-size: 2.4rem;
-      letter-spacing: 0.08em;
-      color: var(--accent);
-    }
-
-    .footer-brand p {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
-
-    .footer-links {
-      display: flex;
+      justify-content: center;
       flex-direction: column;
-      align-items: flex-end;
-      gap: 12px;
-    }
-
-    .footer-ig {
-      display: inline-flex;
-      align-items: center;
       gap: 8px;
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      color: var(--text-muted);
-      transition: color var(--transition);
-    }
-
-    .footer-ig:hover { color: var(--accent); }
-
-    .footer-copy {
-      font-size: 0.75rem;
       color: var(--text-faint);
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
     }
+    .product-img .img-fallback svg { opacity: 0.3; }
+    /* shown via JS when img errors */
+    .product-img.img-broken img { display: none; }
+    .product-img.img-broken .img-fallback { display: flex; }
 
-    /* =====================================================
-       ANIMATIONS
-       ===================================================== */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    .product-tag { position: absolute; top: 10px; left: 10px; font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; background: rgba(10,10,10,0.82); color: var(--accent); border: 1px solid rgba(240,192,64,0.3); padding: 3px 8px; border-radius: 100px; backdrop-filter: blur(4px); z-index: 1; }
 
-    /* Scroll-reveal utility */
-    .reveal {
-      opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
+    .filter-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
+    .filter-tab { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 7px 16px; border: 1px solid var(--border); border-radius: 100px; background: transparent; color: var(--text-muted); cursor: pointer; transition: all var(--transition); }
+    .filter-tab:hover, .filter-tab.active { border-color: var(--accent); color: var(--accent); background: rgba(240,192,64,0.06); }
+    .product-card.hidden { display: none; }
+    .product-body { padding: 24px; }
+    .product-name { font-family: var(--font-display); font-size: 1.3rem; letter-spacing: 0.06em; margin-bottom: 8px; }
+    .product-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; margin-bottom: 20px; }
+    .product-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .product-price { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); letter-spacing: 0.05em; }
+    .product-price span { font-size: 0.65rem; color: var(--text-muted); display: block; }
+    .btn-sm { padding: 9px 18px; font-size: 0.68rem; }
 
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    /* WHY */
+    .why { background: var(--surface); }
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px; }
+    .why-card { padding: 40px 32px; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--bg); position: relative; overflow: hidden; transition: border-color var(--transition); }
+    .why-card:hover { border-color: rgba(240,192,64,0.4); }
+    .why-card::after { content: attr(data-n); position: absolute; bottom: -8px; right: 16px; font-family: var(--font-display); font-size: 6rem; color: rgba(240,192,64,0.04); line-height: 1; user-select: none; }
+    .why-icon { width: 40px; height: 40px; margin-bottom: 20px; color: var(--accent); }
+    .why-title { font-family: var(--font-display); font-size: 1.3rem; letter-spacing: 0.06em; margin-bottom: 10px; }
+    .why-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; }
 
-    /* Staggered reveal for grids */
-    .reveal-stagger > * {
-      opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
+    /* FOOTER */
+    footer { background: var(--surface); border-top: 1px solid var(--border); padding: 64px 5vw; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 32px; }
+    .footer-brand h2 { font-family: var(--font-display); font-size: 2.4rem; letter-spacing: 0.08em; color: var(--accent); }
+    .footer-brand p { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.2em; color: var(--text-muted); margin-top: 4px; }
+    .footer-links { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+    .footer-ig { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.1em; color: var(--text-muted); transition: color var(--transition); }
+    .footer-ig:hover { color: var(--accent); }
+    .footer-copy { font-size: 0.75rem; color: var(--text-faint); }
 
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-stagger > * { opacity: 0; transform: translateY(32px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .reveal-stagger.visible > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0s; }
     .reveal-stagger.visible > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.08s; }
     .reveal-stagger.visible > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.16s; }
@@ -765,43 +377,19 @@
     .reveal-stagger.visible > *:nth-child(5) { opacity: 1; transform: none; transition-delay: 0.32s; }
     .reveal-stagger.visible > *:nth-child(6) { opacity: 1; transform: none; transition-delay: 0.40s; }
 
-    /* =====================================================
-       MOBILE NAV MENU
-       ===================================================== */
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      inset: 64px 0 0;
-      background: rgba(10,10,10,0.97);
-      backdrop-filter: blur(16px);
-      z-index: 99;
-      padding: 48px 5vw;
-      flex-direction: column;
-      gap: 32px;
-    }
-
+    /* MOBILE MENU */
+    .mobile-menu { display: none; position: fixed; inset: 64px 0 0; background: rgba(10,10,10,0.97); backdrop-filter: blur(16px); z-index: 99; padding: 48px 5vw; flex-direction: column; gap: 32px; }
     .mobile-menu.open { display: flex; }
-
-    .mobile-menu a {
-      font-family: var(--font-display);
-      font-size: 2.5rem;
-      letter-spacing: 0.06em;
-      color: var(--text);
-      transition: color var(--transition);
-    }
-
+    .mobile-menu a { font-family: var(--font-display); font-size: 2.5rem; letter-spacing: 0.06em; color: var(--text); transition: color var(--transition); }
     .mobile-menu a:hover { color: var(--accent); }
 
-    /* =====================================================
-       RESPONSIVE
-       ===================================================== */
+    /* RESPONSIVE */
     @media (max-width: 900px) {
       .nav-links { display: none; }
       .hamburger { display: flex; }
       footer { grid-template-columns: 1fr; }
       .footer-links { align-items: flex-start; }
     }
-
     @media (max-width: 600px) {
       section { padding: 80px 5vw; }
       .hero-buttons { flex-direction: column; }
@@ -811,24 +399,15 @@
 </head>
 <body>
 
-  <!-- =====================================================
-       NAV
-       ===================================================== -->
+  <!-- NAV -->
   <nav class="nav">
-    <div class="nav-logo">
-      SC Labs
-      <span>v1.0</span>
-    </div>
+    <div class="nav-logo">SC Labs<span>v1.0</span></div>
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
       <li><a href="#products">Products</a></li>
       <li><a href="#why">About</a></li>
       <li><a href="#contact">Contact</a></li>
-      <li>
-        <a href="/" class="nav-back">
-          ← sohaanchhabra.in
-        </a>
-      </li>
+      <li><a href="/" class="nav-back">← sohaanchhabra.in</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -844,26 +423,17 @@
     <a href="/" style="font-size:1.2rem; color: var(--text-muted);">← sohaanchhabra.in</a>
   </div>
 
-  <!-- =====================================================
-       HERO
-       ===================================================== -->
+  <!-- HERO -->
   <section class="hero" id="home">
     <div class="hero-bg-text" aria-hidden="true">SC</div>
     <div class="hero-content">
       <div class="hero-tag">Engineering Studio · Est. 2026</div>
-      <h1 class="hero-title">
-        SC <span class="accent">Labs</span>
-      </h1>
+      <h1 class="hero-title">SC <span class="accent">Labs</span></h1>
       <p class="hero-subtitle">Design &nbsp;•&nbsp; Prototype &nbsp;•&nbsp; Manufacture</p>
-      <p class="hero-desc">
-        Turning ideas into reality through 3D printing, CAD design, rapid prototyping, and engineering solutions.
-      </p>
+      <p class="hero-desc">Turning ideas into reality through 3D printing, CAD design, rapid prototyping, and engineering solutions.</p>
       <div class="hero-buttons">
         <a href="#products" class="btn btn-primary">
-          <!-- Arrow icon -->
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 7H12M12 7L7 2M12 7L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L7 2M12 7L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           View Products
         </a>
         <a href="#contact" class="btn btn-outline">Request a Quote</a>
@@ -871,25 +441,17 @@
     </div>
   </section>
 
-  <!-- =====================================================
-       SERVICES
-       ===================================================== -->
+  <!-- SERVICES -->
   <section class="services" id="services">
     <div class="reveal">
       <div class="section-label">What We Offer</div>
       <h2 class="section-title">Services</h2>
     </div>
     <div class="services-grid reveal-stagger">
-
-      <!-- 3D Printing -->
       <div class="service-card">
         <span class="service-number">01</span>
-        <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="8" y="28" width="32" height="14" rx="2"/>
-          <path d="M8 28L16 8H32L40 28"/>
-          <path d="M16 8H32"/>
-          <circle cx="24" cy="18" r="4"/>
-          <path d="M8 35H40"/>
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="8" y="28" width="32" height="14" rx="2"/><path d="M8 28L16 8H32L40 28"/><path d="M16 8H32"/><circle cx="24" cy="18" r="4"/><path d="M8 35H40"/>
         </svg>
         <h3 class="service-name">3D Printing</h3>
         <p class="service-desc">High-quality functional and aesthetic prints using PLA, PETG, and TPU. From single prototypes to small-batch production runs.</p>
@@ -899,53 +461,37 @@
           <span class="service-badge" style="margin-left:6px">TPU</span>
         </div>
       </div>
-
-      <!-- CAD Design -->
       <div class="service-card">
         <span class="service-number">02</span>
-        <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="6" y="6" width="36" height="36" rx="2"/>
-          <path d="M6 18H42M18 6V42"/>
-          <path d="M24 24L34 14M34 14H28M34 14V20"/>
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="6" y="6" width="36" height="36" rx="2"/><path d="M6 18H42M18 6V42"/><path d="M24 24L34 14M34 14H28M34 14V20"/>
         </svg>
         <h3 class="service-name">CAD Design</h3>
         <p class="service-desc">Custom part design, modifications, and reverse engineering. Precise parametric models ready for manufacture or further iteration.</p>
         <span class="service-badge">STEP / STL / DXF</span>
       </div>
-
-      <!-- Rapid Prototyping -->
       <div class="service-card">
         <span class="service-number">03</span>
-        <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <polygon points="24,4 44,38 4,38"/>
-          <path d="M24 16V28M24 34V36"/>
-          <circle cx="24" cy="38" r="1" fill="currentColor"/>
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="24,4 44,38 4,38"/><path d="M24 16V28M24 34V36"/><circle cx="24" cy="38" r="1" fill="currentColor"/>
         </svg>
         <h3 class="service-name">Rapid Prototyping</h3>
         <p class="service-desc">Transform concepts into physical prototypes quickly. Iterate fast, validate design assumptions, and move to production with confidence.</p>
         <span class="service-badge">Concept → Part in Days</span>
       </div>
-
-      <!-- CNC Machining -->
       <div class="service-card">
         <span class="service-number">04</span>
-        <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="24" cy="24" r="16"/>
-          <circle cx="24" cy="24" r="6"/>
-          <path d="M24 8V14M24 34V40M8 24H14M34 24H40"/>
-          <path d="M13.4 13.4L17.6 17.6M30.4 30.4L34.6 34.6M34.6 13.4L30.4 17.6M17.6 30.4L13.4 34.6"/>
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="24" cy="24" r="16"/><circle cx="24" cy="24" r="6"/><path d="M24 8V14M24 34V40M8 24H14M34 24H40"/><path d="M13.4 13.4L17.6 17.6M30.4 30.4L34.6 34.6M34.6 13.4L30.4 17.6M17.6 30.4L13.4 34.6"/>
         </svg>
         <h3 class="service-name">CNC Machining</h3>
         <p class="service-desc">Precision manufacturing services for metal and composite parts. Tight tolerances, superior surface finish, production-grade quality.</p>
         <span class="service-badge">Aluminium · Steel · Composites</span>
       </div>
-
     </div>
   </section>
 
-  <!-- =====================================================
-       PRODUCTS
-       ===================================================== -->
+  <!-- PRODUCTS -->
   <section id="products">
     <div class="products-intro reveal">
       <div>
@@ -958,7 +504,6 @@
       </a>
     </div>
 
-    <!-- Category filter tabs -->
     <div class="filter-tabs reveal">
       <button class="filter-tab active" data-filter="all">All</button>
       <button class="filter-tab" data-filter="lighting">Lighting</button>
@@ -969,443 +514,390 @@
       <button class="filter-tab" data-filter="articulated">Articulated</button>
     </div>
 
-    <!-- =====================================================
-         Product grid — to add a new product, copy one card block,
-         update: data-category, image src+alt, name, desc, price, material
-         ===================================================== -->
     <div class="products-grid" id="products-grid">
 
-     <!-- Moon Lamp -->
-<div class="product-card" data-product="moon-lamp" data-category="lighting">
-  <div class="product-img">
-    <img src="https://media.printables.com/media/prints/23859/images/248515_10718b5f-8c8c-49dc-848e-edb200f38481/thumbs/inside/1280x960/png/title.webp"
-         alt="3D Printed Moon Lamp"
-         loading="lazy"
-         onerror="this.style.display='none';this.parentElement.style.background='var(--surface-2)'" />
-    <span class="product-tag">Lighting</span>
-  </div>
-  <div class="product-body">
-    <h3 class="product-name">Moon Lamp</h3>
-    <p class="product-desc">Realistic lunar surface lamp with warm LED glow. Perfect ambient night light, available in multiple sizes.</p>
-    <div class="product-footer">
-      <div class="product-price">Starting at ₹499<span>PLA · LED</span></div>
-      <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
-    </div>
-  </div>
-</div>
+      <!-- Moon Lamp -->
+      <div class="product-card" data-product="moon-lamp" data-category="lighting">
+        <div class="product-img">
+          <img src="https://media.printables.com/media/prints/23859/images/248515_10718b5f-8c8c-49dc-848e-edb200f38481/thumbs/inside/1280x960/png/title.webp" alt="3D Printed Moon Lamp" loading="lazy" />
+          <div class="img-fallback"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Moon Lamp</div>
+          <span class="product-tag">Lighting</span>
+        </div>
+        <div class="product-body">
+          <h3 class="product-name">Moon Lamp</h3>
+          <p class="product-desc">Realistic lunar surface lamp with warm LED glow. Perfect ambient night light, available in multiple sizes.</p>
+          <div class="product-footer">
+            <div class="product-price">Starting at ₹499<span>PLA · LED</span></div>
+            <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
+          </div>
+        </div>
+      </div>
 
-<!-- Personalized Photo Moon Lamp -->
-<div class="product-card" data-product="photo-moon-lamp" data-category="lighting">
-  <div class="product-img">
-    <img src="https://i.etsystatic.com/25367396/r/il/2a44dc/2570097018/il_570xN.2570097018_odwa.jpg"
-         alt="Personalized Photo Moon Lamp Lithophane"
-         loading="lazy"
-         onerror="this.style.display='none';this.parentElement.style.background='var(--surface-2)'" />
-    <span class="product-tag">Lighting</span>
-  </div>
-  <div class="product-body">
-    <h3 class="product-name">Personalized Photo Moon Lamp</h3>
-    <p class="product-desc">Your photo etched into a moon lamp using lithophane technique — glows beautifully when lit. Unique personalised gift.</p>
-    <div class="product-footer">
-      <div class="product-price">Starting at ₹799<span>PLA · LED</span></div>
-      <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
-    </div>
-  </div>
-</div>
+      <!-- Personalized Photo Moon Lamp -->
+      <div class="product-card" data-product="photo-moon-lamp" data-category="lighting">
+        <div class="product-img">
+          <img src="https://i.etsystatic.com/25367396/r/il/2a44dc/2570097018/il_570xN.2570097018_odwa.jpg" alt="Personalized Photo Moon Lamp Lithophane" loading="lazy" />
+          <div class="img-fallback"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Photo Moon Lamp</div>
+          <span class="product-tag">Lighting</span>
+        </div>
+        <div class="product-body">
+          <h3 class="product-name">Personalized Photo Moon Lamp</h3>
+          <p class="product-desc">Your photo etched into a moon lamp using lithophane technique — glows beautifully when lit. Unique personalised gift.</p>
+          <div class="product-footer">
+            <div class="product-price">Starting at ₹799<span>PLA · LED</span></div>
+            <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
+          </div>
+        </div>
+      </div>
 
-<!-- Hoodie Pen Holder -->
-<div class="product-card" data-product="hoodie-pen-holder" data-category="desk">
-  <div class="product-img">
-    <img src="https://i.etsystatic.com/57860441/r/il/f049bc/7066691827/il_1080xN.7066691827_45ff.jpg"
-         alt="3D Printed Hoodie Pen Holder"
-         loading="lazy"
-         onerror="this.style.display='none';this.parentElement.style.background='var(--surface-2)'" />
-    <span class="product-tag">Desk</span>
-  </div>
-  <div class="product-body">
-    <h3 class="product-name">Hoodie Pen Holder</h3>
-    <p class="product-desc">Fun desk organiser shaped like a hoodie. Holds pens, pencils, and markers — a conversation starter on any desk.</p>
-    <div class="product-footer">
-      <div class="product-price">Starting at ₹249<span>PLA</span></div>
-      <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
-    </div>
-  </div>
-</div>
+      <!-- Hoodie Pen Holder -->
+      <div class="product-card" data-product="hoodie-pen-holder" data-category="desk">
+        <div class="product-img">
+          <img src="https://i.etsystatic.com/57860441/r/il/f049bc/7066691827/il_1080xN.7066691827_45ff.jpg" alt="3D Printed Hoodie Pen Holder" loading="lazy" />
+          <div class="img-fallback"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Hoodie Pen Holder</div>
+          <span class="product-tag">Desk</span>
+        </div>
+        <div class="product-body">
+          <h3 class="product-name">Hoodie Pen Holder</h3>
+          <p class="product-desc">Fun desk organiser shaped like a hoodie. Holds pens, pencils, and markers — a conversation starter on any desk.</p>
+          <div class="product-footer">
+            <div class="product-price">Starting at ₹249<span>PLA</span></div>
+            <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
+          </div>
+        </div>
+      </div>
 
-<!-- Warrior Pen Holder -->
-<div class="product-card" data-product="warrior-pen-holder" data-category="desk">
-  <div class="product-img">
-    <img src="https://i.etsystatic.com/59930057/r/il/1f1d57/6969711277/il_570xN.6969711277_tfxn.jpg"
-         alt="3D Printed Samurai Warrior Pen Holder"
-         loading="lazy"
-         onerror="this.style.display='none';this.parentElement.style.background='var(--surface-2)'" />
-    <span class="product-tag">Desk</span>
-  </div>
-  <div class="product-body">
-    <h3 class="product-name">Warrior Pen Holder</h3>
-    <p class="product-desc">Samurai-inspired pen holder with intricate detailing. Holds multiple pens and adds a bold statement to your workspace.</p>
-    <div class="product-footer">
-      <div class="product-price">Starting at ₹299<span>PLA</span></div>
-      <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
-    </div>
-  </div>
-</div>
+      <!-- Warrior Pen Holder -->
+      <div class="product-card" data-product="warrior-pen-holder" data-category="desk">
+        <div class="product-img">
+          <img src="https://i.etsystatic.com/59930057/r/il/1f1d57/6969711277/il_570xN.6969711277_tfxn.jpg" alt="3D Printed Samurai Warrior Pen Holder" loading="lazy" />
+          <div class="img-fallback"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Warrior Pen Holder</div>
+          <span class="product-tag">Desk</span>
+        </div>
+        <div class="product-body">
+          <h3 class="product-name">Warrior Pen Holder</h3>
+          <p class="product-desc">Samurai-inspired pen holder with intricate detailing. Holds multiple pens and adds a bold statement to your workspace.</p>
+          <div class="product-footer">
+            <div class="product-price">Starting at ₹299<span>PLA</span></div>
+            <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
+          </div>
+        </div>
+      </div>
 
-<!-- Geometric Planter -->
-<div class="product-card" data-product="geometric-planter" data-category="decor">
-  <div class="product-img">
-    <img src="https://media.printables.com/media/prints/11351/images/97255_483fd5c3-7b2d-4f21-a9a7-82b06361db00/thumbs/inside/1280x960/jpg/plantygon1_11351.webp"
-         alt="3D Printed Geometric Planter"
-         loading="lazy"
-         onerror="this.style.display='none';this.parentElement.style.background='var(--surface-2)'" />
-    <span class="product-tag">Home Decor</span>
-  </div>
-  <div class="product-body">
-    <h3 class="product-name">Geometric Planter</h3>
-    <p class="product-desc">Modern angular planter for succulents and small plants. Clean geometric facets catch light beautifully on any shelf.</p>
-    <div class="product-footer">
-      <div class="product-price">Starting at ₹349<span>PETG</span></div>
-      <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
-    </div>
-  </div>
-</div>
+      <!-- Geometric Planter -->
+      <div class="product-card" data-product="geometric-planter" data-category="decor">
+        <div class="product-img">
+          <img src="https://media.printables.com/media/prints/11351/images/97255_483fd5c3-7b2d-4f21-a9a7-82b06361db00/thumbs/inside/1280x960/jpg/plantygon1_11351.webp" alt="3D Printed Geometric Planter" loading="lazy" />
+          <div class="img-fallback"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Geometric Planter</div>
+          <span class="product-tag">Home Decor</span>
+        </div>
+        <div class="product-body">
+          <h3 class="product-name">Geometric Planter</h3>
+          <p class="product-desc">Modern angular planter for succulents and small plants. Clean geometric facets catch light beautifully on any shelf.</p>
+          <div class="product-footer">
+            <div class="product-price">Starting at ₹349<span>PETG</span></div>
+            <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
+          </div>
+        </div>
+      </div>
 
-<!-- Ripple Vase -->
-<div class="product-card" data-product="ripple-vase" data-category="decor">
-  <div class="product-img">
-    <img src="https://media.printables.com/media/prints/1156221/images/8720712_a6156843-7261-4640-a08d-fbbff09551e4_4880f595-72a6-4728-9bf5-ebbcecb4ea16/thumbs/inside/320x240/png/ripple-vase.webp"
-         alt="3D Printed Ripple Vase"
-         loading="lazy"
-         onerror="this.style.display='none';this.parentElement.style.background='var(--surface-2)'" />
-    <span class="product-tag">Home Decor</span>
-  </div>
-  <div class="product-body">
-    <h3 class="product-name">Ripple Vase</h3>
-    <p class="product-desc">Wavy textured vase with a sculptural profile. Printed in vase mode for a seamless, watertight finish. Elegant minimalist decor.</p>
-    <div class="product-footer">
-      <div class="product-price">Starting at ₹299<span>PLA</span></div>
-      <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
-    </div>
-  </div>
-</div>
+      <!-- Ripple Vase -->
+      <div class="product-card" data-product="ripple-vase" data-category="decor">
+        <div class="product-img">
+          <img src="https://media.printables.com/media/prints/1156221/images/8720712_a6156843-7261-4640-a08d-fbbff09551e4_4880f595-72a6-4728-9bf5-ebbcecb4ea16/thumbs/inside/320x240/png/ripple-vase.webp" alt="3D Printed Ripple Vase" loading="lazy" />
+          <div class="img-fallback"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Ripple Vase</div>
+          <span class="product-tag">Home Decor</span>
+        </div>
+        <div class="product-body">
+          <h3 class="product-name">Ripple Vase</h3>
+          <p class="product-desc">Wavy textured vase with a sculptural profile. Printed in vase mode for a seamless, watertight finish. Elegant minimalist decor.</p>
+          <div class="product-footer">
+            <div class="product-price">Starting at ₹299<span>PLA</span></div>
+            <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
+          </div>
+        </div>
+      </div>
 
-<!-- Face Planter -->
-<div class="product-card" data-product="face-planter" data-category="decor">
-  <div class="product-img">
-    <img src="https://media.printables.com/media/prints/26c1f00b-dad9-4628-ba1a-49d589fb5c2c/images/10100228_6455c66c-87ca-4648-9d5d-7171d55141fc_cb826167-2f93-425d-95cf-f3bd6e94de17/thumbs/inside/1280x960/png/chatgpt-image-jun-26-2025-06_15_35-pm.webp"
-         alt="3D Printed Face Planter"
-         loading="lazy"
-         onerror="this.style.display='none';this.parentElement.style.background='var(--surface-2)'" />
-    <span class="product-tag">Home Decor</span>
-  </div>
-  <div class="product-body">
-    <h3 class="product-name">Face Planter</h3>
-    <p class="product-desc">Quirky face-shaped planter where the plant becomes the hair. Perfect for succulents, cacti, or small ferns.</p>
-    <div class="product-footer">
-      <div class="product-price">Starting at ₹279<span>PLA</span></div>
-      <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
-    </div>
-  </div>
-</div>
+      <!-- Face Planter -->
+      <div class="product-card" data-product="face-planter" data-category="decor">
+        <div class="product-img">
+          <img src="https://media.printables.com/media/prints/26c1f00b-dad9-4628-ba1a-49d589fb5c2c/images/10100228_6455c66c-87ca-4648-9d5d-7171d55141fc_cb826167-2f93-425d-95cf-f3bd6e94de17/thumbs/inside/1280x960/png/chatgpt-image-jun-26-2025-06_15_35-pm.webp" alt="3D Printed Face Planter" loading="lazy" />
+          <div class="img-fallback"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Face Planter</div>
+          <span class="product-tag">Home Decor</span>
+        </div>
+        <div class="product-body">
+          <h3 class="product-name">Face Planter</h3>
+          <p class="product-desc">Quirky face-shaped planter where the plant becomes the hair. Perfect for succulents, cacti, or small ferns.</p>
+          <div class="product-footer">
+            <div class="product-price">Starting at ₹279<span>PLA</span></div>
+            <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
+          </div>
+        </div>
+      </div>
 
-<!-- Spiral Vase -->
-<div class="product-card" data-product="spiral-vase" data-category="decor">
-  <div class="product-img">
-    <img src="https://makerworld.bblmw.com/makerworld/model/USae00ac72accfc4/design/2023-12-05_44807718a6b6c.jpg"
-         alt="3D Printed Spiral Vase"
-         loading="lazy"
-         onerror="this.style.display='none';this.parentElement.style.background='var(--surface-2)'" />
-    <span class="product-tag">Home Decor</span>
-  </div>
-  <div class="product-body">
-    <h3 class="product-name">Spiral Vase</h3>
-    <p class="product-desc">Tall spiralling vase printed seamlessly in vase mode. The twisting form creates stunning shadow patterns when lit from within.</p>
-    <div class="product-footer">
-      <div class="product-price">Starting at ₹249<span>PLA</span></div>
-      <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
-    </div>
-  </div>
-</div>
+      <!-- Spiral Vase -->
+      <div class="product-card" data-product="spiral-vase" data-category="decor">
+        <div class="product-img">
+          <img src="https://makerworld.bblmw.com/makerworld/model/USae00ac72accfc4/design/2023-12-05_44807718a6b6c.jpg" alt="3D Printed Spiral Vase" loading="lazy" />
+          <div class="img-fallback"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Spiral Vase</div>
+          <span class="product-tag">Home Decor</span>
+        </div>
+        <div class="product-body">
+          <h3 class="product-name">Spiral Vase</h3>
+          <p class="product-desc">Tall spiralling vase printed seamlessly in vase mode. The twisting form creates stunning shadow patterns when lit from within.</p>
+          <div class="product-footer">
+            <div class="product-price">Starting at ₹249<span>PLA</span></div>
+            <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
+          </div>
+        </div>
+      </div>
 
-<!-- Rotating Photo Frame -->
-<div class="product-card" data-product="rotating-photo-frame" data-category="decor">
-  <div class="product-img">
-    <img src="https://media.printables.com/media/prints/867323/images/6798077_97e46eb2-28f7-496f-9fca-a79ac613f928_0c552f5a-39d5-4927-a066-d8629d8ccc30/polaroidframe-ezgifcom-optimize.gif"
-         alt="3D Printed Rotating Photo Frame"
-         loading="lazy"
-         onerror="this.style.display='none';this.parentElement.style.background='var(--surface-2)'" />
-    <span class="product-tag">Home Decor</span>
-  </div>
-  <div class="product-body">
-    <h3 class="product-name">Rotating Photo Frame</h3>
-    <p class="product-desc">360° rotating display stand for photos or small prints. Smooth bearing mechanism, fits standard photo sizes.</p>
-    <div class="product-footer">
-      <div class="product-price">Starting at ₹399<span>PETG</span></div>
-      <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
-    </div>
-  </div>
-</div>
+      <!-- Rotating Photo Frame -->
+      <div class="product-card" data-product="rotating-photo-frame" data-category="decor">
+        <div class="product-img">
+          <img src="https://media.printables.com/media/prints/867323/images/6798077_97e46eb2-28f7-496f-9fca-a79ac613f928_0c552f5a-39d5-4927-a066-d8629d8ccc30/polaroidframe-ezgifcom-optimize.gif" alt="3D Printed Rotating Photo Frame" loading="lazy" />
+          <div class="img-fallback"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Rotating Photo Frame</div>
+          <span class="product-tag">Home Decor</span>
+        </div>
+        <div class="product-body">
+          <h3 class="product-name">Rotating Photo Frame</h3>
+          <p class="product-desc">360° rotating display stand for photos or small prints. Smooth bearing mechanism, fits standard photo sizes.</p>
+          <div class="product-footer">
+            <div class="product-price">Starting at ₹399<span>PETG</span></div>
+            <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
+          </div>
+        </div>
+      </div>
 
-<!-- Spotify Plaque Stand -->
-<div class="product-card" data-product="spotify-plaque" data-category="decor">
-  <div class="product-img">
-    <img src="https://makerworld.bblmw.com/makerworld/model/US6ad022409f8c85/design/2025-01-04_499a80e4b25c7.jpg?x-oss-process=image/resize,w_1000/format,webp"
-         alt="3D Printed Spotify Plaque NFC Stand"
-         loading="lazy"
-         onerror="this.style.display='none';this.parentElement.style.background='var(--surface-2)'" />
-    <span class="product-tag">Home Decor</span>
-  </div>
-  <div class="product-body">
-    <h3 class="product-name">Spotify Plaque Stand</h3>
-    <p class="product-desc">Display stand for Spotify song plaques. Tap with your phone to play — compatible with NFC Spotify codes. Great personalised gift.</p>
-    <div class="product-footer">
-      <div class="product-price">Starting at ₹349<span>PLA</span></div>
-      <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
-    </div>
-  </div>
-</div>
+      <!-- Spotify Plaque Stand -->
+      <div class="product-card" data-product="spotify-plaque" data-category="decor">
+        <div class="product-img">
+          <img src="https://makerworld.bblmw.com/makerworld/model/US6ad022409f8c85/design/2025-01-04_499a80e4b25c7.jpg?x-oss-process=image/resize,w_1000/format,webp" alt="3D Printed Spotify Plaque NFC Stand" loading="lazy" />
+          <div class="img-fallback"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Spotify Plaque Stand</div>
+          <span class="product-tag">Home Decor</span>
+        </div>
+        <div class="product-body">
+          <h3 class="product-name">Spotify Plaque Stand</h3>
+          <p class="product-desc">Display stand for Spotify song plaques. Tap with your phone to play — compatible with NFC Spotify codes. Great personalised gift.</p>
+          <div class="product-footer">
+            <div class="product-price">Starting at ₹349<span>PLA</span></div>
+            <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
+          </div>
+        </div>
+      </div>
 
-<!-- Personalized Nameplate -->
-<div class="product-card" data-product="nameplate" data-category="desk">
-  <div class="product-img">
-    <img src="https://i.etsystatic.com/21144832/r/il/7cc40c/8077205292/il_1080xN.8077205292_rw47.jpg"
-         alt="3D Printed Personalized Nameplate"
-         loading="lazy"
-         onerror="this.style.display='none';this.parentElement.style.background='var(--surface-2)'" />
-    <span class="product-tag">Desk</span>
-  </div>
-  <div class="product-body">
-    <h3 class="product-name">Personalized Nameplate</h3>
-    <p class="product-desc">Custom desk or door nameplate with your name, title, or logo. Clean modern typography, multiple colour options available.</p>
-    <div class="product-footer">
-      <div class="product-price">Starting at ₹199<span>PLA</span></div>
-      <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
-    </div>
-  </div>
-</div>
+      <!-- Personalized Nameplate -->
+      <div class="product-card" data-product="nameplate" data-category="desk">
+        <div class="product-img">
+          <img src="https://i.etsystatic.com/21144832/r/il/7cc40c/8077205292/il_1080xN.8077205292_rw47.jpg" alt="3D Printed Personalized Nameplate" loading="lazy" />
+          <div class="img-fallback"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Nameplate</div>
+          <span class="product-tag">Desk</span>
+        </div>
+        <div class="product-body">
+          <h3 class="product-name">Personalized Nameplate</h3>
+          <p class="product-desc">Custom desk or door nameplate with your name, title, or logo. Clean modern typography, multiple colour options available.</p>
+          <div class="product-footer">
+            <div class="product-price">Starting at ₹199<span>PLA</span></div>
+            <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
+          </div>
+        </div>
+      </div>
 
-<!-- Desk Organizer -->
-<div class="product-card" data-product="desk-organizer" data-category="desk">
-  <div class="product-img">
-    <img src="https://i.etsystatic.com/37558919/r/il/e7b213/6526970345/il_1080xN.6526970345_arhi.jpg"
-         alt="3D Printed Modular Desk Organizer"
-         loading="lazy"
-         onerror="this.style.display='none';this.parentElement.style.background='var(--surface-2)'" />
-    <span class="product-tag">Desk</span>
-  </div>
-  <div class="product-body">
-    <h3 class="product-name">Desk Organizer</h3>
-    <p class="product-desc">Modular desk organiser for pens, cables, and accessories. Stackable and configurable to fit any workspace layout.</p>
-    <div class="product-footer">
-      <div class="product-price">Starting at ₹349<span>PETG</span></div>
-      <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
-    </div>
-  </div>
-</div>
+      <!-- Desk Organizer -->
+      <div class="product-card" data-product="desk-organizer" data-category="desk">
+        <div class="product-img">
+          <img src="https://i.etsystatic.com/37558919/r/il/e7b213/6526970345/il_1080xN.6526970345_arhi.jpg" alt="3D Printed Modular Desk Organizer" loading="lazy" />
+          <div class="img-fallback"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Desk Organizer</div>
+          <span class="product-tag">Desk</span>
+        </div>
+        <div class="product-body">
+          <h3 class="product-name">Desk Organizer</h3>
+          <p class="product-desc">Modular desk organiser for pens, cables, and accessories. Stackable and configurable to fit any workspace layout.</p>
+          <div class="product-footer">
+            <div class="product-price">Starting at ₹349<span>PETG</span></div>
+            <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
+          </div>
+        </div>
+      </div>
 
-<!-- Cable Organizer -->
-<div class="product-card" data-product="cable-organizer" data-category="desk">
-  <div class="product-img">
-    <img src="https://media.printables.com/media/prints/564262/images/4519807_a7db1182-86e1-43e0-9357-0fd7784a9063/thumbs/inside/1280x960/jpg/20230826_102119.webp"
-         alt="3D Printed Cable Organizer"
-         loading="lazy"
-         onerror="this.style.display='none';this.parentElement.style.background='var(--surface-2)'" />
-    <span class="product-tag">Desk</span>
-  </div>
-  <div class="product-body">
-    <h3 class="product-name">Cable Organizer</h3>
-    <p class="product-desc">Clip-on cable management system for desks. Keeps USB, charging, and audio cables tidy and tangle-free.</p>
-    <div class="product-footer">
-      <div class="product-price">Starting at ₹149<span>TPU</span></div>
-      <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
-    </div>
-  </div>
-</div>
+      <!-- Cable Organizer -->
+      <div class="product-card" data-product="cable-organizer" data-category="desk">
+        <div class="product-img">
+          <img src="https://media.printables.com/media/prints/564262/images/4519807_a7db1182-86e1-43e0-9357-0fd7784a9063/thumbs/inside/1280x960/jpg/20230826_102119.webp" alt="3D Printed Cable Organizer" loading="lazy" />
+          <div class="img-fallback"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Cable Organizer</div>
+          <span class="product-tag">Desk</span>
+        </div>
+        <div class="product-body">
+          <h3 class="product-name">Cable Organizer</h3>
+          <p class="product-desc">Clip-on cable management system for desks. Keeps USB, charging, and audio cables tidy and tangle-free.</p>
+          <div class="product-footer">
+            <div class="product-price">Starting at ₹149<span>TPU</span></div>
+            <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
+          </div>
+        </div>
+      </div>
 
-<!-- Phone Stand -->
-<div class="product-card" data-product="phone-stand" data-category="desk">
-  <div class="product-img">
-    <img src="https://media.printables.com/media/prints/1202776/images/9033750_5e4c01fe-51f3-41e4-a8ac-f2867d5ed0a4_2914c063-ede2-4712-92e9-c6a6f514a855/thumbs/inside/1280x960/jpg/img20250222183712.webp"
-         alt="3D Printed Flexible TPU Phone Stand"
-         loading="lazy"
-         onerror="this.style.display='none';this.parentElement.style.background='var(--surface-2)'" />
-    <span class="product-tag">Desk</span>
-  </div>
-  <div class="product-body">
-    <h3 class="product-name">Phone Stand</h3>
-    <p class="product-desc">Flexible TPU phone stand with anti-slip base. Works in both portrait and landscape, folds flat for travel.</p>
-    <div class="product-footer">
-      <div class="product-price">Starting at ₹149<span>TPU</span></div>
-      <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
-    </div>
-  </div>
-</div>
+      <!-- Phone Stand -->
+      <div class="product-card" data-product="phone-stand" data-category="desk">
+        <div class="product-img">
+          <img src="https://media.printables.com/media/prints/1202776/images/9033750_5e4c01fe-51f3-41e4-a8ac-f2867d5ed0a4_2914c063-ede2-4712-92e9-c6a6f514a855/thumbs/inside/1280x960/jpg/img20250222183712.webp" alt="3D Printed Flexible TPU Phone Stand" loading="lazy" />
+          <div class="img-fallback"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Phone Stand</div>
+          <span class="product-tag">Desk</span>
+        </div>
+        <div class="product-body">
+          <h3 class="product-name">Phone Stand</h3>
+          <p class="product-desc">Flexible TPU phone stand with anti-slip base. Works in both portrait and landscape, folds flat for travel.</p>
+          <div class="product-footer">
+            <div class="product-price">Starting at ₹149<span>TPU</span></div>
+            <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
+          </div>
+        </div>
+      </div>
 
-<!-- Headphone Stand -->
-<div class="product-card" data-product="headphone-stand" data-category="desk">
-  <div class="product-img">
-    <img src="https://i.etsystatic.com/53806269/r/il/c75b94/6761497801/il_1080xN.6761497801_1oao.jpg"
-         alt="3D Printed Headphone Stand"
-         loading="lazy"
-         onerror="this.style.display='none';this.parentElement.style.background='var(--surface-2)'" />
-    <span class="product-tag">Desk</span>
-  </div>
-  <div class="product-body">
-    <h3 class="product-name">Headphone Stand</h3>
-    <p class="product-desc">Sturdy desk headphone stand with cable routing channel. Keeps your headset accessible and your desk clutter-free.</p>
-    <div class="product-footer">
-      <div class="product-price">Starting at ₹299<span>PETG</span></div>
-      <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
-    </div>
-  </div>
-</div>
+      <!-- Headphone Stand -->
+      <div class="product-card" data-product="headphone-stand" data-category="desk">
+        <div class="product-img">
+          <img src="https://i.etsystatic.com/53806269/r/il/c75b94/6761497801/il_1080xN.6761497801_1oao.jpg" alt="3D Printed Headphone Stand" loading="lazy" />
+          <div class="img-fallback"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Headphone Stand</div>
+          <span class="product-tag">Desk</span>
+        </div>
+        <div class="product-body">
+          <h3 class="product-name">Headphone Stand</h3>
+          <p class="product-desc">Sturdy desk headphone stand with cable routing channel. Keeps your headset accessible and your desk clutter-free.</p>
+          <div class="product-footer">
+            <div class="product-price">Starting at ₹299<span>PETG</span></div>
+            <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
+          </div>
+        </div>
+      </div>
 
-<!-- Controller Stand -->
-<div class="product-card" data-product="controller-stand" data-category="gaming">
-  <div class="product-img">
-    <img src="https://i.etsystatic.com/51301297/r/il/31419c/6491898279/il_1080xN.6491898279_jpgu.jpg"
-         alt="3D Printed Game Controller Stand"
-         loading="lazy"
-         onerror="this.style.display='none';this.parentElement.style.background='var(--surface-2)'" />
-    <span class="product-tag">Gaming</span>
-  </div>
-  <div class="product-body">
-    <h3 class="product-name">Controller Stand</h3>
-    <p class="product-desc">Universal game controller stand — fits PS5, Xbox, Switch Pro, and more. Stable weighted base, clean minimal design.</p>
-    <div class="product-footer">
-      <div class="product-price">Starting at ₹249<span>PETG</span></div>
-      <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
-    </div>
-  </div>
-</div>
+      <!-- Controller Stand -->
+      <div class="product-card" data-product="controller-stand" data-category="gaming">
+        <div class="product-img">
+          <img src="https://i.etsystatic.com/51301297/r/il/31419c/6491898279/il_1080xN.6491898279_jpgu.jpg" alt="3D Printed Game Controller Stand" loading="lazy" />
+          <div class="img-fallback"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Controller Stand</div>
+          <span class="product-tag">Gaming</span>
+        </div>
+        <div class="product-body">
+          <h3 class="product-name">Controller Stand</h3>
+          <p class="product-desc">Universal game controller stand — fits PS5, Xbox, Switch Pro, and more. Stable weighted base, clean minimal design.</p>
+          <div class="product-footer">
+            <div class="product-price">Starting at ₹249<span>PETG</span></div>
+            <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
+          </div>
+        </div>
+      </div>
 
-<!-- Gear Ball Fidget -->
-<div class="product-card" data-product="gear-ball" data-category="fidget">
-  <div class="product-img">
-    <img src="https://i.etsystatic.com/40554093/r/il/cdf8d2/7107169993/il_1080xN.7107169993_7st7.jpg"
-         alt="3D Printed Gear Ball Fidget Toy"
-         loading="lazy"
-         onerror="this.style.display='none';this.parentElement.style.background='var(--surface-2)'" />
-    <span class="product-tag">Fidget</span>
-  </div>
-  <div class="product-body">
-    <h3 class="product-name">Gear Ball Fidget</h3>
-    <p class="product-desc">Satisfying interlocking gear sphere that spins and rotates in every direction. A mesmerising desk toy and stress reliever.</p>
-    <div class="product-footer">
-      <div class="product-price">Starting at ₹199<span>PLA</span></div>
-      <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
-    </div>
-  </div>
-</div>
+      <!-- Gear Ball Fidget -->
+      <div class="product-card" data-product="gear-ball" data-category="fidget">
+        <div class="product-img">
+          <img src="https://i.etsystatic.com/40554093/r/il/cdf8d2/7107169993/il_1080xN.7107169993_7st7.jpg" alt="3D Printed Gear Ball Fidget Toy" loading="lazy" />
+          <div class="img-fallback"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Gear Ball</div>
+          <span class="product-tag">Fidget</span>
+        </div>
+        <div class="product-body">
+          <h3 class="product-name">Gear Ball Fidget</h3>
+          <p class="product-desc">Satisfying interlocking gear sphere that spins and rotates in every direction. A mesmerising desk toy and stress reliever.</p>
+          <div class="product-footer">
+            <div class="product-price">Starting at ₹199<span>PLA</span></div>
+            <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
+          </div>
+        </div>
+      </div>
 
-<!-- Infinity Cube -->
-<div class="product-card" data-product="infinity-cube" data-category="fidget">
-  <div class="product-img">
-    <img src="https://i.etsystatic.com/47755767/r/il/3ab7ec/6257057831/il_1080xN.6257057831_11u1.jpg"
-         alt="3D Printed Infinity Cube Fidget"
-         loading="lazy"
-         onerror="this.style.display='none';this.parentElement.style.background='var(--surface-2)'" />
-    <span class="product-tag">Fidget</span>
-  </div>
-  <div class="product-body">
-    <h3 class="product-name">Infinity Cube</h3>
-    <p class="product-desc">Foldable infinity cube fidget toy — endlessly satisfying to flip and fold. Compact size, smooth hinges, great for focus.</p>
-    <div class="product-footer">
-      <div class="product-price">Starting at ₹179<span>PLA</span></div>
-      <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
-    </div>
-  </div>
-</div>
+      <!-- Infinity Cube -->
+      <div class="product-card" data-product="infinity-cube" data-category="fidget">
+        <div class="product-img">
+          <img src="https://i.etsystatic.com/47755767/r/il/3ab7ec/6257057831/il_1080xN.6257057831_11u1.jpg" alt="3D Printed Infinity Cube Fidget" loading="lazy" />
+          <div class="img-fallback"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Infinity Cube</div>
+          <span class="product-tag">Fidget</span>
+        </div>
+        <div class="product-body">
+          <h3 class="product-name">Infinity Cube</h3>
+          <p class="product-desc">Foldable infinity cube fidget toy — endlessly satisfying to flip and fold. Compact size, smooth hinges, great for focus.</p>
+          <div class="product-footer">
+            <div class="product-price">Starting at ₹179<span>PLA</span></div>
+            <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
+          </div>
+        </div>
+      </div>
 
-<!-- Articulated Dragon -->
-<div class="product-card" data-product="articulated-dragon" data-category="articulated">
-  <div class="product-img">
-    <img src="https://i.etsystatic.com/33764036/r/il/116536/5320110944/il_1080xN.5320110944_i7be.jpg"
-         alt="3D Printed Articulated Dragon"
-         loading="lazy"
-         onerror="this.style.display='none';this.parentElement.style.background='var(--surface-2)'" />
-    <span class="product-tag">Articulated</span>
-  </div>
-  <div class="product-body">
-    <h3 class="product-name">Articulated Dragon</h3>
-    <p class="product-desc">Fully articulated print-in-place dragon with flexible joints and zero assembly. Available in multiple sizes and colours.</p>
-    <div class="product-footer">
-      <div class="product-price">Starting at ₹299<span>PLA / PETG</span></div>
-      <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
-    </div>
-  </div>
-</div>
+      <!-- Articulated Dragon -->
+      <div class="product-card" data-product="articulated-dragon" data-category="articulated">
+        <div class="product-img">
+          <img src="https://i.etsystatic.com/33764036/r/il/116536/5320110944/il_1080xN.5320110944_i7be.jpg" alt="3D Printed Articulated Dragon" loading="lazy" />
+          <div class="img-fallback"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Articulated Dragon</div>
+          <span class="product-tag">Articulated</span>
+        </div>
+        <div class="product-body">
+          <h3 class="product-name">Articulated Dragon</h3>
+          <p class="product-desc">Fully articulated print-in-place dragon with flexible joints and zero assembly. Available in multiple sizes and colours.</p>
+          <div class="product-footer">
+            <div class="product-price">Starting at ₹299<span>PLA / PETG</span></div>
+            <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
+          </div>
+        </div>
+      </div>
 
-<!-- Articulated Axolotl -->
-<div class="product-card" data-product="articulated-axolotl" data-category="articulated">
-  <div class="product-img">
-    <img src="https://i.etsystatic.com/20346205/r/il/6f0313/5110770585/il_1080xN.5110770585_5lhe.jpg"
-         alt="3D Printed Articulated Axolotl"
-         loading="lazy"
-         onerror="this.style.display='none';this.parentElement.style.background='var(--surface-2)'" />
-    <span class="product-tag">Articulated</span>
-  </div>
-  <div class="product-body">
-    <h3 class="product-name">Articulated Axolotl</h3>
-    <p class="product-desc">Adorable print-in-place axolotl with a fully poseable segmented body. The most popular item — always a crowd favourite.</p>
-    <div class="product-footer">
-      <div class="product-price">Starting at ₹279<span>PLA</span></div>
-      <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
-    </div>
-  </div>
-</div>
+      <!-- Articulated Axolotl -->
+      <div class="product-card" data-product="articulated-axolotl" data-category="articulated">
+        <div class="product-img">
+          <img src="https://i.etsystatic.com/20346205/r/il/6f0313/5110770585/il_1080xN.5110770585_5lhe.jpg" alt="3D Printed Articulated Axolotl" loading="lazy" />
+          <div class="img-fallback"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Articulated Axolotl</div>
+          <span class="product-tag">Articulated</span>
+        </div>
+        <div class="product-body">
+          <h3 class="product-name">Articulated Axolotl</h3>
+          <p class="product-desc">Adorable print-in-place axolotl with a fully poseable segmented body. The most popular item — always a crowd favourite.</p>
+          <div class="product-footer">
+            <div class="product-price">Starting at ₹279<span>PLA</span></div>
+            <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="btn btn-ig btn-sm">Order on Instagram</a>
+          </div>
+        </div>
+      </div>
 
-  <!-- =====================================================
-       WHY SC LABS
-       ===================================================== -->
+    </div><!-- /#products-grid -->
+  </section><!-- /#products  ← THIS WAS THE MISSING CLOSING TAG -->
+
+  <!-- WHY SC LABS -->
   <section class="why" id="why">
     <div class="reveal">
       <div class="section-label">Why Us</div>
       <h2 class="section-title">Why Choose SC Labs</h2>
     </div>
     <div class="why-grid reveal-stagger">
-
       <div class="why-card" data-n="01">
-        <svg class="why-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-          <circle cx="20" cy="20" r="16"/>
-          <path d="M12 20L17 25L28 14"/>
+        <svg class="why-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <circle cx="20" cy="20" r="16"/><path d="M12 20L17 25L28 14"/>
         </svg>
         <h3 class="why-title">Engineering Expertise</h3>
         <p class="why-desc">Every part is designed and validated with an engineering mindset — tolerances, material selection, and functional performance considered at every step.</p>
       </div>
-
       <div class="why-card" data-n="02">
-        <svg class="why-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-          <path d="M20 4L36 12V28L20 36L4 28V12L20 4Z"/>
-          <path d="M20 4V36M4 12L36 28M36 12L4 28"/>
+        <svg class="why-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <path d="M20 4L36 12V28L20 36L4 28V12L20 4Z"/><path d="M20 4V36M4 12L36 28M36 12L4 28"/>
         </svg>
         <h3 class="why-title">Custom Solutions</h3>
         <p class="why-desc">No off-the-shelf compromises. Each project is tailored to your exact requirements — geometry, material, finish, and function.</p>
       </div>
-
       <div class="why-card" data-n="03">
-        <svg class="why-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-          <circle cx="20" cy="20" r="16"/>
-          <path d="M20 10V20L27 27"/>
+        <svg class="why-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <circle cx="20" cy="20" r="16"/><path d="M20 10V20L27 27"/>
         </svg>
         <h3 class="why-title">Fast Turnaround</h3>
         <p class="why-desc">Most standard orders completed within 24–72 hours. Rapid iteration means your project doesn't get stuck waiting on parts.</p>
       </div>
-
       <div class="why-card" data-n="04">
-        <svg class="why-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <svg class="why-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
           <path d="M20 6L24 14H34L26 20L30 30L20 24L10 30L14 20L6 14H16L20 6Z"/>
         </svg>
         <h3 class="why-title">Student-Friendly Pricing</h3>
         <p class="why-desc">Competitive, transparent pricing built for students, makers, and early-stage projects. Quality engineering doesn't have to break the budget.</p>
       </div>
-
     </div>
   </section>
 
-  <!-- =====================================================
-       CONTACT / CTA
-       ===================================================== -->
+  <!-- CONTACT -->
   <section id="contact" style="background: var(--bg); text-align: center;">
     <div class="reveal" style="max-width: 640px; margin: 0 auto;">
       <div class="section-label" style="justify-content: center;">Get In Touch</div>
@@ -1414,19 +906,14 @@
         Whether it's a one-off print, a custom CAD part, or a full prototype run — drop us a message on Instagram and we'll get back to you with a quote.
       </p>
       <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer"
-         class="btn btn-ig"
-         style="font-size: 0.9rem; padding: 18px 48px; margin: 0 auto;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-        </svg>
+         class="btn btn-ig" style="font-size: 0.9rem; padding: 18px 48px; margin: 0 auto;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
         Request a Quote on Instagram
       </a>
     </div>
   </section>
 
-  <!-- =====================================================
-       FOOTER
-       ===================================================== -->
+  <!-- FOOTER -->
   <footer>
     <div class="footer-brand">
       <h2>SC Labs</h2>
@@ -1434,7 +921,6 @@
     </div>
     <div class="footer-links">
       <a href="https://www.instagram.com/sc_labs777/" target="_blank" rel="noopener noreferrer" class="footer-ig">
-        <!-- Instagram icon -->
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
         @sc_labs777
       </a>
@@ -1442,30 +928,18 @@
     </div>
   </footer>
 
-  <!-- =====================================================
-       JAVASCRIPT
-       ===================================================== -->
   <script>
-    // ---- Mobile menu ----
+    // Mobile menu
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
-
-    hamburger.addEventListener('click', () => {
-      mobileMenu.classList.toggle('open');
-    });
-
-    function closeMobileMenu() {
-      mobileMenu.classList.remove('open');
-    }
-
-    // Close mobile menu on outside click
+    hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+    function closeMobileMenu() { mobileMenu.classList.remove('open'); }
     document.addEventListener('click', (e) => {
-      if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+      if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target))
         mobileMenu.classList.remove('open');
-      }
     });
 
-    // ---- Scroll reveal ----
+    // Scroll reveal
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -1474,13 +948,28 @@
         }
       });
     }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => revealObserver.observe(el));
 
-    document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => {
-      revealObserver.observe(el);
+    // Image error fallback
+    document.querySelectorAll('.product-img img').forEach(img => {
+      img.addEventListener('error', () => {
+        img.closest('.product-img').classList.add('img-broken');
+      });
     });
 
-    // ---- Security: enforce noopener noreferrer on all external links ----
-    // Catches any links added dynamically or missed in markup
+    // Product filter tabs
+    document.querySelectorAll('.filter-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const filter = tab.dataset.filter;
+        document.querySelectorAll('.product-card').forEach(card => {
+          card.classList.toggle('hidden', filter !== 'all' && card.dataset.category !== filter);
+        });
+      });
+    });
+
+    // Security: enforce noopener noreferrer
     document.querySelectorAll('a[target="_blank"]').forEach(link => {
       const rel = (link.getAttribute('rel') || '').split(' ');
       if (!rel.includes('noopener'))   rel.push('noopener');
@@ -1488,34 +977,23 @@
       link.setAttribute('rel', rel.join(' ').trim());
     });
 
-    // ---- Security: developer console warning ----
-    // Deters social-engineering attacks that ask users to paste code
-    console.log(
-      '%c⚠ Stop!',
-      'color:#f0c040;font-size:2rem;font-weight:bold;'
-    );
-    console.log(
-      '%cThis console is for developers. Do not paste code here that you don\'t fully understand — it could compromise your security.',
-      'color:#f0ede8;font-size:1rem;'
-    );
-
-
+    // Active nav highlight
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
-
     const sectionObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           navLinks.forEach(link => {
-            link.style.color = link.getAttribute('href') === `#${entry.target.id}`
-              ? 'var(--accent)'
-              : '';
+            link.style.color = link.getAttribute('href') === `#${entry.target.id}` ? 'var(--accent)' : '';
           });
         }
       });
     }, { threshold: 0.4 });
-
     sections.forEach(s => sectionObserver.observe(s));
+
+    // Console warning
+    console.log('%c⚠ Stop!', 'color:#f0c040;font-size:2rem;font-weight:bold;');
+    console.log('%cThis console is for developers. Do not paste code here that you don\'t fully understand — it could compromise your security.', 'color:#f0ede8;font-size:1rem;');
   </script>
 
 </body>
